@@ -448,9 +448,10 @@ public class StudyController implements Initializable {
     protected void retrieveMathTests() {
 
         //asynchronously retrieve all documents
-        ApiFuture<QuerySnapshot> future = StudyApplication.fstore.collection("Tests").get();
+        ApiFuture<QuerySnapshot> future = StudyApplication.fstore.collection("Tests2").get();
         // future.get() blocks on response
         List<QueryDocumentSnapshot> documents;
+
         try {
 
             documents = future.get().getDocuments();
@@ -481,7 +482,7 @@ public class StudyController implements Initializable {
     protected void retrieveEnglishTests() {
 
         //asynchronously retrieve all documents
-        ApiFuture<QuerySnapshot> future = StudyApplication.fstore.collection("Tests").get();
+        ApiFuture<QuerySnapshot> future = StudyApplication.fstore.collection("Tests2").get();
         // future.get() blocks on response
         List<QueryDocumentSnapshot> documents;
         try {
@@ -515,7 +516,7 @@ public class StudyController implements Initializable {
     protected void retrieveHistoryTests() {
 
         //asynchronously retrieve all documents
-        ApiFuture<QuerySnapshot> future = StudyApplication.fstore.collection("Tests").get();
+        ApiFuture<QuerySnapshot> future = StudyApplication.fstore.collection("Tests2").get();
         // future.get() blocks on response
         List<QueryDocumentSnapshot> documents;
         try {
@@ -549,7 +550,7 @@ public class StudyController implements Initializable {
     protected void retrieveScienceTests() {
 
         //asynchronously retrieve all documents
-        ApiFuture<QuerySnapshot> future = StudyApplication.fstore.collection("Tests").get();
+        ApiFuture<QuerySnapshot> future = StudyApplication.fstore.collection("Tests2").get();
         // future.get() blocks on response
         List<QueryDocumentSnapshot> documents;
         try {

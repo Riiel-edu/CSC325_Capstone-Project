@@ -96,7 +96,7 @@ public class RegisterController implements Initializable {
 
         /*------------------------------------------Live Updates to UI------------------------------------------------*/
 
-        /*
+
         // Live border coloring while typing
         usernameField.textProperty().addListener((obs, oldText, newText) -> {
             boolean valid = usernamePattern.matcher(newText).matches();
@@ -166,7 +166,7 @@ public class RegisterController implements Initializable {
                 lastNameField.setStyle(valid ? "-fx-border-color: Lime;" : "-fx-border-color: red;");
             }
         });
-        */
+
     }
 
     /**

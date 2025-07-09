@@ -294,7 +294,7 @@ public class TestController implements Initializable {
         String time  = sb.toString();
 
 
-        DocumentReference docRef = StudyApplication.fstore.collection("Tests").document(UUID.randomUUID().toString());
+        DocumentReference docRef = StudyApplication.fstore.collection("Tests2").document(UUID.randomUUID().toString());
 
         Map<String, Object> new_tests = new HashMap<>();
         new_tests.put("Subject", subject);
@@ -312,7 +312,7 @@ public class TestController implements Initializable {
             Test test = tests.get(lowestCountTest);
 
             //asynchronously retrieve all documents
-            ApiFuture<QuerySnapshot> future = StudyApplication.fstore.collection("Tests").get();
+            ApiFuture<QuerySnapshot> future = StudyApplication.fstore.collection("Tests2").get();
             // future.get() blocks on response
             List<QueryDocumentSnapshot> documents;
             try {
@@ -394,7 +394,7 @@ public class TestController implements Initializable {
     protected void retrieveMathTests() {
 
         //asynchronously retrieve all documents
-        ApiFuture<QuerySnapshot> future = StudyApplication.fstore.collection("Tests").get();
+        ApiFuture<QuerySnapshot> future = StudyApplication.fstore.collection("Tests2").get();
         // future.get() blocks on response
         List<QueryDocumentSnapshot> documents;
         try {
@@ -442,7 +442,7 @@ public class TestController implements Initializable {
     protected void retrieveEnglishTests() {
 
         //asynchronously retrieve all documents
-        ApiFuture<QuerySnapshot> future = StudyApplication.fstore.collection("Tests").get();
+        ApiFuture<QuerySnapshot> future = StudyApplication.fstore.collection("Tests2").get();
         // future.get() blocks on response
         List<QueryDocumentSnapshot> documents;
         try {
@@ -490,7 +490,7 @@ public class TestController implements Initializable {
     protected void retrieveHistoryTests() {
 
         //asynchronously retrieve all documents
-        ApiFuture<QuerySnapshot> future = StudyApplication.fstore.collection("Tests").get();
+        ApiFuture<QuerySnapshot> future = StudyApplication.fstore.collection("Tests2").get();
         // future.get() blocks on response
         List<QueryDocumentSnapshot> documents;
         try {
@@ -538,7 +538,7 @@ public class TestController implements Initializable {
     protected void retrieveScienceTests() {
 
         //asynchronously retrieve all documents
-        ApiFuture<QuerySnapshot> future = StudyApplication.fstore.collection("Tests").get();
+        ApiFuture<QuerySnapshot> future = StudyApplication.fstore.collection("Tests2").get();
         // future.get() blocks on response
         List<QueryDocumentSnapshot> documents;
         try {

@@ -84,7 +84,7 @@
             <Font name="Berlin Sans FB" size="18.0" />
          </font>
       </TextField>
-      <TextField fx:id="fNameField" layoutX="334.0" layoutY="241.0" prefHeight="40.0" prefWidth="144.0" promptText="F. NAME">
+      <TextField fx:id="firstNameField" layoutX="334.0" layoutY="241.0" prefHeight="40.0" prefWidth="144.0" promptText="F. NAME">
          <font>
             <Font name="Berlin Sans FB" size="18.0" />
          </font>
