@@ -26,6 +26,7 @@ public class StudyApplication extends Application {
 
     public static Firestore fstore;
     public static FirebaseAuth fauth;
+    public static Scene mainScene;
     private final FirestoreContext contxtFirebase = new FirestoreContext();
 
 
@@ -47,9 +48,9 @@ public class StudyApplication extends Application {
         root.getChildren().add(fxmlLoader.load());
         splashSetup(root, stage);
 
-        Scene scene = new Scene(root, 1200, 700);
+        mainScene = new Scene(root, 1200, 700);
         //scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("splashscreen.css")).toExternalForm());
-        stage.setScene(scene);
+        stage.setScene(mainScene);
         stage.setResizable(false);
         stage.initStyle(StageStyle.TRANSPARENT);
         //stage.getIcons().add(new Image(Objects.requireNonNull(StudyApplication.class.getResourceAsStream())));
@@ -81,6 +82,14 @@ public class StudyApplication extends Application {
         launcher.setText("Launch");
         root.getChildren().add(launcher);
         launcher.setOnAction(e -> {
+            /*
+            try {
+                mainScene = new Scene(loadFXML("landing-view.fxml"));
+                stage.setScene(mainScene);
+                stage.show();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }*/
 
             FXMLLoader fxmlLoader = new FXMLLoader(StudyApplication.class.getResource("landing-view.fxml"));
 
@@ -157,4 +166,13 @@ public class StudyApplication extends Application {
             }
         });
     }
+        /*
+    public static void setRoot(String fxml) throws IOException {
+        mainScene.setRoot(loadFXML(fxml));
+    }
+
+    public static Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(StudyApplication.class.getResource(fxml));
+        return fxmlLoader.load();
+    }*/
 }
