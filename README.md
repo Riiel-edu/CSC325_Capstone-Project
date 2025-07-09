@@ -7,7 +7,6 @@
 - [Technology](#technology)
 - [Presentation](#presentation)
 - [Contributors](#contributors)
-- gfdgfdgfdggdfg
 
 ## Overview
 
