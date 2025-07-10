@@ -106,7 +106,7 @@ public class RegisterController implements Initializable {
         usernameField.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
             if (!isNowFocused) {
                 boolean valid = usernamePattern.matcher(usernameField.getText()).matches();
-                //usernameError.setText(valid ? "" : "2–25 characters, only letters, digits, or '-' allowed");
+                usernameError.setText(valid ? "" : "2–25 characters, only letters, digits, or '-' allowed");
                 usernameField.setStyle(valid ? "-fx-border-color: Lime;" : "-fx-border-color: red;");
             }
         });
@@ -120,7 +120,7 @@ public class RegisterController implements Initializable {
         emailField.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
             if (!isNowFocused) {
                 boolean valid = emailPattern.matcher(emailField.getText()).matches();
-                //emailError.setText(valid ? "" : "Must be a valid email address format");
+                emailError.setText(valid ? "" : "Must be a valid email address format");
                 emailField.setStyle(valid ? "-fx-border-color: Lime;" : "-fx-border-color: red;");
             }
         });
@@ -134,7 +134,7 @@ public class RegisterController implements Initializable {
         passwordField.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
             if (!isNowFocused) {
                 boolean valid = passwordPattern.matcher(passwordField.getText()).matches();
-                //passwordError.setText(valid ? "" : "2–25 characters, letters or digits only");
+                passwordError.setText(valid ? "" : "2–25 characters, letters or digits only");
                 passwordField.setStyle(valid ? "-fx-border-color: Lime;" : "-fx-border-color: red;");
             }
         });
@@ -148,7 +148,7 @@ public class RegisterController implements Initializable {
         firstNameField.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
             if (!isNowFocused) {
                 boolean valid = namePattern.matcher(firstNameField.getText()).matches();
-                //fNameError.setText(valid ? "" : "2–25 letters only");
+                fNameError.setText(valid ? "" : "2–25 letters only");
                 firstNameField.setStyle(valid ? "-fx-border-color: Lime;" : "-fx-border-color: red;");
             }
         });
@@ -162,7 +162,7 @@ public class RegisterController implements Initializable {
         lastNameField.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
             if (!isNowFocused) {
                 boolean valid = namePattern.matcher(lastNameField.getText()).matches();
-                //lNameError.setText(valid ? "" : "2–25 letters only");
+                lNameError.setText(valid ? "" : "2–25 letters only");
                 lastNameField.setStyle(valid ? "-fx-border-color: Lime;" : "-fx-border-color: red;");
             }
         });

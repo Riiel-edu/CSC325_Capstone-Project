@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325_capstoneproject.ProfileController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e2d5ea" height="300.0" stroke="#f1c4ff" strokeType="INSIDE" width="500.0" />
+      <Label layoutX="128.0" layoutY="2.0" text="SELECT A PFP">
+         <font>
+            <Font name="Berlin Sans FB" size="40.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="240.0" layoutX="25.0" layoutY="48.0" stroke="BLACK" strokeType="INSIDE" width="450.0" />
+      <Button layoutX="40.0" layoutY="60.0" mnemonicParsing="false" onAction="#rainbowPFP" prefHeight="100.0" prefWidth="100.0" text="Button" />
+      <Button layoutX="40.0" layoutY="175.0" mnemonicParsing="false" onAction="#catPFP" prefHeight="100.0" prefWidth="100.0" text="Button" />
+      <Button layoutX="200.0" layoutY="60.0" mnemonicParsing="false" onAction="#robotPFP" prefHeight="100.0" prefWidth="100.0" text="Button" />
+      <Button layoutX="200.0" layoutY="175.0" mnemonicParsing="false" onAction="#baseballPFP" prefHeight="100.0" prefWidth="100.0" text="Button" />
+      <Button fx:id="dogPFP" layoutX="355.0" layoutY="60.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" />
+      <Button layoutX="355.0" layoutY="175.0" mnemonicParsing="false" onAction="#horsePFP" prefHeight="100.0" prefWidth="100.0" text="Button" />
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="200.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/profile_symbol.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="200.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/profile_symbol.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="40.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/profile_symbol.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="40.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/profile_symbol.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="355.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/profile_symbol.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="355.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/profile_symbol.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="472.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/close_symbol.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="closeButton" layoutX="470.0" layoutY="7.0" mnemonicParsing="false" onAction="#close" prefHeight="26.0" prefWidth="24.0" style="-fx-opacity: 0;" />
+   </children>
+</AnchorPane>
