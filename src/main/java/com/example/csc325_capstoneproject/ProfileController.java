@@ -46,8 +46,8 @@ public class ProfileController {
     @FXML
     protected void rainbowPFP() {
 
-        CurrentUser.setPFP("/pfps/rainbow.png");
-        StudyController.setPFP(CurrentUser.getPFP());
+        CurrentUser.setPFP("/com/example/csc325_capstoneproject/images/pfps/rainbow.png");
+
 
         //asynchronously retrieve all documents
         ApiFuture<QuerySnapshot> future = StudyApplication.fstore.collection("PFPs").get();
@@ -77,7 +77,7 @@ public class ProfileController {
         DocumentReference docRef = StudyApplication.fstore.collection("PFPs").document(UUID.randomUUID().toString());
 
         Map<String, Object> pfpRef = new HashMap<>();
-        pfpRef.put("PFP", "/pfps/rainbow.png");
+        pfpRef.put("PFP", "/com/example/csc325_capstoneproject/images/pfps/rainbow.png");
         pfpRef.put("User", CurrentUser.getCurrentUID());
 
         //asynchronously write data
@@ -93,8 +93,7 @@ public class ProfileController {
     @FXML
     protected void catPFP() {
 
-        CurrentUser.setPFP("/pfps/cat.png");
-        StudyController.setPFP(CurrentUser.getPFP());
+        CurrentUser.setPFP("/com/example/csc325_capstoneproject/images/pfps/cat.png");
 
         //asynchronously retrieve all documents
         ApiFuture<QuerySnapshot> future = StudyApplication.fstore.collection("PFPs").get();
@@ -124,7 +123,7 @@ public class ProfileController {
         DocumentReference docRef = StudyApplication.fstore.collection("PFPs").document(UUID.randomUUID().toString());
 
         Map<String, Object> pfpRef = new HashMap<>();
-        pfpRef.put("PFP", "/pfps/cat.png");
+        pfpRef.put("PFP", "/com/example/csc325_capstoneproject/images/pfps/cat.png");
         pfpRef.put("User", CurrentUser.getCurrentUID());
 
         //asynchronously write data
@@ -140,8 +139,7 @@ public class ProfileController {
     @FXML
     protected void robotPFP() {
 
-        CurrentUser.setPFP("/pfps/robot.png");
-        StudyController.setPFP(CurrentUser.getPFP());
+        CurrentUser.setPFP("/com/example/csc325_capstoneproject/images/pfps/robot.png");
 
         //asynchronously retrieve all documents
         ApiFuture<QuerySnapshot> future = StudyApplication.fstore.collection("PFPs").get();
@@ -171,7 +169,7 @@ public class ProfileController {
         DocumentReference docRef = StudyApplication.fstore.collection("PFPs").document(UUID.randomUUID().toString());
 
         Map<String, Object> pfpRef = new HashMap<>();
-        pfpRef.put("PFP", "/pfps/robot.png");
+        pfpRef.put("PFP", "/com/example/csc325_capstoneproject/images/pfps/robot.png");
         pfpRef.put("User", CurrentUser.getCurrentUID());
 
         //asynchronously write data
@@ -187,8 +185,7 @@ public class ProfileController {
     @FXML
     protected void baseballPFP() {
 
-        CurrentUser.setPFP("/pfps/baseball.png");
-        StudyController.setPFP(CurrentUser.getPFP());
+        CurrentUser.setPFP("/com/example/csc325_capstoneproject/images/pfps/baseball.png");
 
         //asynchronously retrieve all documents
         ApiFuture<QuerySnapshot> future = StudyApplication.fstore.collection("PFPs").get();
@@ -218,7 +215,7 @@ public class ProfileController {
         DocumentReference docRef = StudyApplication.fstore.collection("PFPs").document(UUID.randomUUID().toString());
 
         Map<String, Object> pfpRef = new HashMap<>();
-        pfpRef.put("PFP", "/pfps/baseball.png");
+        pfpRef.put("PFP", "/com/example/csc325_capstoneproject/images/pfps/baseball.png");
         pfpRef.put("User", CurrentUser.getCurrentUID());
 
         //asynchronously write data
@@ -234,8 +231,7 @@ public class ProfileController {
     @FXML
     protected void dogPFP() {
 
-        CurrentUser.setPFP("/pfps/dog.png");
-        StudyController.setPFP(CurrentUser.getPFP());
+        CurrentUser.setPFP("/com/example/csc325_capstoneproject/images/pfps/dog.png");
 
         //asynchronously retrieve all documents
         ApiFuture<QuerySnapshot> future = StudyApplication.fstore.collection("PFPs").get();
@@ -265,7 +261,7 @@ public class ProfileController {
         DocumentReference docRef = StudyApplication.fstore.collection("PFPs").document(UUID.randomUUID().toString());
 
         Map<String, Object> pfpRef = new HashMap<>();
-        pfpRef.put("PFP", "/pfps/dog.png");
+        pfpRef.put("PFP", "/com/example/csc325_capstoneproject/images/pfps/dog.png");
         pfpRef.put("User", CurrentUser.getCurrentUID());
 
         //asynchronously write data
@@ -281,8 +277,7 @@ public class ProfileController {
     @FXML
     protected void horsePFP() {
 
-        CurrentUser.setPFP("/pfps/horse.png");
-        StudyController.setPFP(CurrentUser.getPFP());
+        CurrentUser.setPFP("/com/example/csc325_capstoneproject/images/pfps/horse.png");
 
         //asynchronously retrieve all documents
         ApiFuture<QuerySnapshot> future = StudyApplication.fstore.collection("PFPs").get();
@@ -312,7 +307,7 @@ public class ProfileController {
         DocumentReference docRef = StudyApplication.fstore.collection("PFPs").document(UUID.randomUUID().toString());
 
         Map<String, Object> pfpRef = new HashMap<>();
-        pfpRef.put("PFP", "/pfps/horse.png");
+        pfpRef.put("PFP", "/com/example/csc325_capstoneproject/images/pfps/horse.png");
         pfpRef.put("User", CurrentUser.getCurrentUID());
 
         //asynchronously write data
