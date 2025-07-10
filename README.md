@@ -36,8 +36,10 @@ The Automated Study Application is a group project aimed to help young children 
 
 ## Contributors
 
-Nathaniel Rivera - Product Manager and Full Stack Developer
+Rivera, Nathaniel - Product Manager and Full Stack Developer
 
-Brian Low - Frontend and UI Designer
+Low, Brian - Frontend and UI Designer
 
-Carlos Berio - UI and UX Developer
+Berio, Carlos - UI and UX Developer
+
+Shupe, Robert - Frontend Developer
