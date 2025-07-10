@@ -15,6 +15,10 @@ public class CurrentUser {
      * A static variable which stores the UID of the current User
      */
     public static String uid;
+    /**
+     * A static variable which stores the profile picture of the current User
+     */
+    public static String pfp;
 
     /**
      * A static method which sets which User is currently logged into the application.
@@ -46,4 +50,35 @@ public class CurrentUser {
     public static String getCurrentUID() {
         return uid;
     }
+
+    /**
+     * Static method which logs the user out of the application.
+     * @since 7/9/2025
+     * @author Nathaniel Rivera
+     */
+    public static void logOut() {
+        username = null;
+        uid = null;
+    }
+
+    /**
+     * Static method which returns the users profile picture.
+     * @return pfp The current User's pfp.
+     * @since 7/10/2025
+     * @author Nathaniel Rivera
+     */
+    public static String getPFP() {
+        return pfp;
+    }
+
+    /**
+     * Static method which sets the users profile picture
+     * @param picture the new pfp of the user.
+     * @since 7/10/2025
+     * @author Nathaniel Rivera
+     */
+    public static void setPFP(String picture) {
+        pfp = picture;
+    }
+
 }

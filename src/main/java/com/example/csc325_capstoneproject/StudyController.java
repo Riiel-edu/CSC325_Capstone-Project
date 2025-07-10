@@ -19,6 +19,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.net.URL;
@@ -36,7 +37,10 @@ import java.util.concurrent.ExecutionException;
 public class StudyController implements Initializable {
 
     @FXML
-    protected ImageView pfp;
+    protected static ImageView pfp;
+
+    @FXML
+    protected Button logOutButton;
 
     @FXML
     protected Label past10ExamsLabel;
@@ -280,11 +284,25 @@ public class StudyController implements Initializable {
     @FXML
     protected void changePFP() {
 
-        File file = (new FileChooser()).showOpenDialog(pfp.getScene().getWindow());
+        FXMLLoader fxmlLoader = new FXMLLoader(StudyController.class.getResource("splash-view.fxml"));
 
-        if(file != null) {
-            pfp.setImage(new Image(file.toURI().toString()));
-        }
+        Stage stage = (Stage) logOutButton.getScene().getWindow();
+
+        try {
+            Stage pfpStage = new Stage();
+            AnchorPane pfpRoot = new AnchorPane();
+            pfpRoot.getChildren().add(fxmlLoader.load());
+
+            Scene scene = new Scene(pfpRoot, 1200, 700);
+            //scene.getStylesheets().add(Objects.requireNonNull(StudyApplication.class.getResource("math-theme.css")).toExternalForm());
+            pfpStage.setScene(scene);
+            pfpStage.setResizable(false);
+            pfpStage.initStyle(StageStyle.TRANSPARENT);
+            //landingStage.getIcons().add(new Image(Objects.requireNonNull(StudyApplication.class.getResourceAsStream())));
+            stage.close();
+            pfpStage.show();
+
+        } catch(Exception _) { }
 
     }
 
@@ -574,5 +592,45 @@ public class StudyController implements Initializable {
         } catch (InterruptedException | ExecutionException ex) {
             ex.printStackTrace();
         }
+    }
+
+    /**
+     * Logs the user out of the app returning them to the home page.
+     * @since 7/9/2025
+     * @author Nathaniel Rivera
+     */
+    @FXML
+    protected void logOut() {
+        LoginController.updateLoginStatus(false);
+        CurrentUser.logOut();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(StudyController.class.getResource("splash-view.fxml"));
+
+        Stage stage = (Stage) logOutButton.getScene().getWindow();
+
+        try {
+            Stage splashStage = new Stage();
+            AnchorPane splashRoot = new AnchorPane();
+            splashRoot.getChildren().add(fxmlLoader.load());
+            StudyApplication.splashSetup(splashRoot, splashStage);
+
+            Scene scene = new Scene(splashRoot, 1200, 700);
+            //scene.getStylesheets().add(Objects.requireNonNull(StudyApplication.class.getResource("math-theme.css")).toExternalForm());
+            splashStage.setScene(scene);
+            splashStage.setResizable(false);
+            splashStage.initStyle(StageStyle.TRANSPARENT);
+            //landingStage.getIcons().add(new Image(Objects.requireNonNull(StudyApplication.class.getResourceAsStream())));
+            stage.close();
+            splashStage.show();
+
+        } catch(Exception _) { }
+    }
+
+    /**
+     * Sets the users PFP to the inputted String
+     * @param input The pfp being set
+     */
+    protected static void setPFP(String input) {
+        pfp.setImage(new Image(Objects.requireNonNull(StudyController.class.getResourceAsStream(input))));
     }
 }
