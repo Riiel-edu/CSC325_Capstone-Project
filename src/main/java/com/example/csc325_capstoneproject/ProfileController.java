@@ -83,6 +83,7 @@ public class ProfileController {
         //asynchronously write data
         ApiFuture<WriteResult> result = docRef.set(pfpRef);
 
+        System.out.println("PFP changed");
     }
 
     /**
@@ -129,6 +130,7 @@ public class ProfileController {
         //asynchronously write data
         ApiFuture<WriteResult> result = docRef.set(pfpRef);
 
+        System.out.println("PFP changed");
     }
 
     /**
@@ -175,6 +177,7 @@ public class ProfileController {
         //asynchronously write data
         ApiFuture<WriteResult> result = docRef.set(pfpRef);
 
+        System.out.println("PFP changed");
     }
 
     /**
@@ -221,6 +224,7 @@ public class ProfileController {
         //asynchronously write data
         ApiFuture<WriteResult> result = docRef.set(pfpRef   );
 
+        System.out.println("PFP changed");
     }
 
     /**
@@ -267,6 +271,7 @@ public class ProfileController {
         //asynchronously write data
         ApiFuture<WriteResult> result = docRef.set(pfpRef);
 
+        System.out.println("PFP changed");
     }
 
     /**
@@ -313,6 +318,7 @@ public class ProfileController {
         //asynchronously write data
         ApiFuture<WriteResult> result = docRef.set(pfpRef);
 
+        System.out.println("PFP changed");
     }
 
     /**
