@@ -4,6 +4,7 @@ import com.example.csc325_capstoneproject.model.CurrentUser;
 import com.example.csc325_capstoneproject.model.Subject;
 import com.example.csc325_capstoneproject.model.Test;
 import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
 import javafx.collections.FXCollections;
@@ -37,7 +38,7 @@ import java.util.concurrent.ExecutionException;
 public class StudyController implements Initializable {
 
     @FXML
-    protected static ImageView pfp;
+    protected ImageView pfp;
 
     @FXML
     protected Button logOutButton;
@@ -152,6 +153,31 @@ public class StudyController implements Initializable {
         averageUpdated();
 
         tv.setItems(math_tests);
+
+        //asynchronously retrieve all documents
+        ApiFuture<QuerySnapshot> future = StudyApplication.fstore.collection("PFPs").get();
+        // future.get() blocks on response
+        List<QueryDocumentSnapshot> documents;
+        try {
+            documents = future.get().getDocuments();
+
+            if (documents.size() > 0) {
+
+                for (QueryDocumentSnapshot document : documents) {
+
+                    if(document.getData().get("User").equals(CurrentUser.getCurrentUID())) {
+                        CurrentUser.setPFP(document.getData().get("PFP").toString());
+                        setPFP();
+                    }
+                }
+
+            } else {
+                System.out.println("No data");
+            }
+
+        } catch (InterruptedException | ExecutionException ex) {
+            ex.printStackTrace();
+        }
     }
 
     /**
@@ -284,22 +310,20 @@ public class StudyController implements Initializable {
     @FXML
     protected void changePFP() {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(StudyController.class.getResource("splash-view.fxml"));
-
-        Stage stage = (Stage) logOutButton.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(StudyController.class.getResource("picture-view.fxml"));
 
         try {
             Stage pfpStage = new Stage();
             AnchorPane pfpRoot = new AnchorPane();
             pfpRoot.getChildren().add(fxmlLoader.load());
 
-            Scene scene = new Scene(pfpRoot, 1200, 700);
+            Scene scene = new Scene(pfpRoot, 500, 300);
             //scene.getStylesheets().add(Objects.requireNonNull(StudyApplication.class.getResource("math-theme.css")).toExternalForm());
             pfpStage.setScene(scene);
             pfpStage.setResizable(false);
             pfpStage.initStyle(StageStyle.TRANSPARENT);
             //landingStage.getIcons().add(new Image(Objects.requireNonNull(StudyApplication.class.getResourceAsStream())));
-            stage.close();
+
             pfpStage.show();
 
         } catch(Exception _) { }
@@ -627,10 +651,12 @@ public class StudyController implements Initializable {
     }
 
     /**
-     * Sets the users PFP to the inputted String
-     * @param input The pfp being set
+     * Reloads the users PFP to the CurrentUsers pfp
+     * @since 7/10/2025
+     * @author Nathaniel Rivera
      */
-    protected static void setPFP(String input) {
-        pfp.setImage(new Image(Objects.requireNonNull(StudyController.class.getResourceAsStream(input))));
+    @FXML
+    protected void setPFP() {
+        pfp.setImage(new Image(Objects.requireNonNull(StudyController.class.getResourceAsStream(CurrentUser.getPFP()))));
     }
 }
