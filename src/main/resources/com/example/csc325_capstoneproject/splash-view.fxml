@@ -7,10 +7,10 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #A39BD8;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Rectangle height="700.0" stroke="#616161" strokeType="INSIDE" width="86.0" />
-        <Label layoutX="-21.0" layoutY="600.0" style="-fx-rotate: 90;" text="appTitle" textFill="WHITE">
+        <Rectangle fill="#7b65b9" height="700.0" opacity="0.5" stroke="#616161" strokeType="INSIDE" width="86.0" />
+        <Label layoutX="-68.0" layoutY="554.0" style="-fx-rotate: 90;" text="LearningTrack" textFill="WHITE">
             <font>
                 <Font name="Berlin Sans FB" size="37.0" />
             </font>
@@ -30,5 +30,15 @@
                 <Image url="@images/profile_symbol.png" />
             </image>
         </ImageView>
+      <Label layoutX="185.0" layoutY="117.0" text="Your all-in one app for Math, History, English and Science" textFill="WHITE">
+         <font>
+            <Font name="Berlin Sans FB" size="36.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="493.0" fitWidth="412.0" layoutX="374.0" layoutY="197.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/students_study.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>
