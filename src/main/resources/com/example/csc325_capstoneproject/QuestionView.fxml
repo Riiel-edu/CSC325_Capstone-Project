@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" spacing="20.0" style="-fx-background-color: #f4f4f4;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325_capstoneproject.TestController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    <children>
+        <Label fx:id="questionNumberLabel" text="Question 1/15">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+
+        <Label fx:id="questionLabel" text="This is where the question text will go." wrapText="true">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+
+        <VBox fx:id="optionsContainer" alignment="CENTER_LEFT" spacing="15.0">
+            <children>
+                <RadioButton fx:id="option1" mnemonicParsing="false" text="Option 1">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="optionsGroup" />
+                    </toggleGroup>
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </RadioButton>
+                <RadioButton fx:id="option2" mnemonicParsing="false" text="Option 2" toggleGroup="$optionsGroup">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </RadioButton>
+                <RadioButton fx:id="option3" mnemonicParsing="false" text="Option 3" toggleGroup="$optionsGroup">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </RadioButton>
+                <RadioButton fx:id="option4" mnemonicParsing="false" text="Option 4" toggleGroup="$optionsGroup">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </RadioButton>
+            </children>
+        </VBox>
+
+        <HBox alignment="CENTER" spacing="40.0">
+            <children>
+                <Button fx:id="previousButton" mnemonicParsing="false" onAction="#previous" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #2196F3; -fx-text-fill: white;" text="Previous">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Button>
+                <Button fx:id="nextButton" mnemonicParsing="false" onAction="#next" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #2196F3; -fx-text-fill: white;" text="Next">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Button>
+                <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submit" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Submit for Grade">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Button>
+            </children>
+        </HBox>
+    </children>
+</VBox>
