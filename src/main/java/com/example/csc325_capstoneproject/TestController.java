@@ -1,8 +1,10 @@
 package com.example.csc325_capstoneproject;
 
 import com.example.csc325_capstoneproject.model.CurrentUser;
+import com.example.csc325_capstoneproject.model.Question;
 import com.example.csc325_capstoneproject.model.Subject;
 import com.example.csc325_capstoneproject.model.Test;
+import com.example.csc325_capstoneproject.service.QuizDataService;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
@@ -12,10 +14,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -34,6 +39,9 @@ import java.util.concurrent.ExecutionException;
 public class TestController implements Initializable {
 
     @FXML
+    public AnchorPane root;
+
+    @FXML
     protected Label numQuestionsLabel;
 
     @FXML
@@ -49,7 +57,10 @@ public class TestController implements Initializable {
     protected Label questionLabel;
 
     @FXML
-    protected TextArea answerField;
+    protected ToggleGroup optionsGroup;
+
+    @FXML
+    protected VBox optionsContainer;
 
     @FXML
     protected Button previousButton;
@@ -60,9 +71,21 @@ public class TestController implements Initializable {
     @FXML
     protected Button submitButton;
 
-    protected ArrayList<String> questions;
+    @FXML
+    protected RadioButton option1;
 
-    protected ArrayList<String> answers;
+    @FXML
+    protected RadioButton option2;
+
+    @FXML
+    protected RadioButton option3;
+
+    @FXML
+    protected RadioButton option4;
+
+    protected List<Question> questions;
+
+    protected ArrayList<Integer> answers;
 
     protected int currentQuestion;
 
@@ -78,6 +101,8 @@ public class TestController implements Initializable {
 
     protected int lowestCountTest;
 
+    protected int score;
+
     protected LinkedList<Test> tests = new LinkedList<Test>();
 
     /**
@@ -90,6 +115,8 @@ public class TestController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        QuizDataService quizGen = new QuizDataService();
+
         subject = StudyController.getCurrentSubject();
         gradeLevel = StudyController.getCurrentGradeLevel();
         totalQuestions = StudyController.getQuestionCount();
@@ -101,14 +128,23 @@ public class TestController implements Initializable {
         numQuestionsLabel.setText("Question " + currentQuestion + " of " + totalQuestions);
         previousButton.setDisable(true);
 
-        questions = new ArrayList<>();
-        for(int i = 0; i < totalQuestions; i++) {
-            questions.add(i, "");
+        switch(subject) {
+            case MATH -> questions = quizGen.generateAITest("Math", gradeLevel, totalQuestions);
+            case ENGLISH -> questions = quizGen.generateAITest("English", gradeLevel, totalQuestions);
+            case HISTORY -> questions = quizGen.generateAITest("History", gradeLevel, totalQuestions);
+            case SCIENCE -> questions = quizGen.generateAITest("Science", gradeLevel, totalQuestions);
         }
+
+        //not working
+        //questionLabel.setText(questions.get(currentQuestion - 1).getQuestionText());
+        //option1.setText(questions.get(currentQuestion - 1).getOptions().get(0));
+        //option2.setText(questions.get(currentQuestion - 1).getOptions().get(1);
+        //option3.setText(questions.get(currentQuestion - 1).getOptions().get(2);
+        //option4.setText(questions.get(currentQuestion - 1).getOptions().get(3);
 
         answers = new ArrayList<>();
         for(int i = 0; i < totalQuestions; i++) {
-            answers.add(i, "");
+            answers.add(i, -1);
         }
 
         switch(subject) {
@@ -118,42 +154,15 @@ public class TestController implements Initializable {
             case SCIENCE -> retrieveScienceTests();
         }
 
-        if(isTimed) {
-            Timer timer = new Timer();
-            timer.schedule(new TimerTask() {
-                public void run() {
-                    System.out.println("Times out");
-                    /*
-                    FXMLLoader fxmlLoader = new FXMLLoader(StudyApplication.class.getResource("landing-view.fxml"));
-
-                    Stage stage = (Stage) submitButton.getScene().getWindow();
-
-                    try {
-                        Stage landingStage = new Stage();
-                        AnchorPane landingRoot = new AnchorPane();
-                        landingRoot.getChildren().add(fxmlLoader.load());
-
-                        Scene scene = new Scene(landingRoot, 1200, 800);
-                        scene.getStylesheets().add(Objects.requireNonNull(StudyApplication.class.getResource("math-theme.css")).toExternalForm());
-                        landingStage.setScene(scene);
-                        landingStage.setResizable(false);
-                        //landingStage.getIcons().add(new Image(Objects.requireNonNull(StudyApplication.class.getResourceAsStream())));
-                        stage.close();
-                        landingStage.show();
-                    } catch(Exception _) { }*/
-                    try {
-                        timer();
-                    } catch (InterruptedException e) {
-                        System.out.println("failed");
-                    }
-                }
-            }, 5000);
-            try {
-                timer();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
+        //if(isTimed) {
+        //   Timer timer = new Timer();
+        //    timer.schedule(new TimerTask() {
+        //        public void run() {
+        //            System.out.println("Times out");
+        //           submit();
+        //        }
+        //    }, totalQuestions);
+        //}
     }
 
     /**
@@ -164,10 +173,27 @@ public class TestController implements Initializable {
     @FXML
     protected void next() {
 
-        answers.set(currentQuestion - 1, answerField.getText());
+        RadioButton selected = (RadioButton) optionsGroup.getSelectedToggle();
+
+        if (selected != null) {
+            int selectedIndex = optionsContainer.getChildren().indexOf(selected);
+            answers.set(currentQuestion - 1, selectedIndex);
+        }
 
         currentQuestion++;
         numQuestionsLabel.setText("Question " + currentQuestion + " of " + totalQuestions);
+
+        //questionLabel.setText(questions.get(currentQuestion - 1).getQuestionText());
+
+        switch(answers.get(currentQuestion - 1)) {
+            case -1 -> {
+                option1.setSelected(false); option2.setSelected(false); option3.setSelected(false); option4.setSelected(false);
+            }
+            case 0 -> option1.setSelected(true);
+            case 1 -> option2.setSelected(true);
+            case 2 -> option3.setSelected(true);
+            case 3 -> option4.setSelected(true);
+        }
 
         if(currentQuestion == totalQuestions) {
             nextButton.setDisable(true);
@@ -186,10 +212,28 @@ public class TestController implements Initializable {
     @FXML
     protected void previous() {
 
-        answers.set(currentQuestion - 1, answerField.getText());
+        RadioButton selected = (RadioButton) optionsGroup.getSelectedToggle();
+
+        if (selected != null) {
+            int selectedIndex = optionsContainer.getChildren().indexOf(selected);
+            answers.set(currentQuestion - 1, selectedIndex);
+        }
 
         currentQuestion--;
+
         numQuestionsLabel.setText("Question " + currentQuestion + " of " + totalQuestions);
+
+        switch(answers.get(currentQuestion - 1)) {
+            case -1 -> {
+                option1.setSelected(false); option2.setSelected(false); option3.setSelected(false); option4.setSelected(false);
+            }
+            case 0 -> option1.setSelected(true);
+            case 1 -> option2.setSelected(true);
+            case 2 -> option3.setSelected(true);
+            case 3 -> option4.setSelected(true);
+        }
+
+        //questionLabel.setText(questions.get(currentQuestion - 1).getQuestionText());
 
         if(currentQuestion != totalQuestions && nextButton.isDisable()) {
             nextButton.setDisable(false);
@@ -201,81 +245,60 @@ public class TestController implements Initializable {
     }
 
     /**
-     * Submits the exam.
-     * @since 7/2/2025
+     * Submits the exam
+     * @since 7/14/2025
      * @author Nathaniel Rivera
      */
     @FXML
     protected void submit() {
 
-        addTest();
+        //for(int i = 0; answers.size() > i; i++) {
+        //    if(answers.get(i) == questions.get(i).getCorrectAnswerIndex()) {
+        //        score++;
+        //    }
+        //}
 
-        FXMLLoader fxmlLoader = new FXMLLoader(StudyApplication.class.getResource("landing-view.fxml"));
+        Rectangle border = new Rectangle();
+        border.setWidth(1200); border.setHeight(700);
+        border.setFill(Color.LAVENDER);
 
-        Stage stage = (Stage) submitButton.getScene().getWindow();
+        Rectangle inside = new Rectangle();
+        inside.setWidth(1100); inside.setHeight(600); inside.setLayoutX(50); inside.setLayoutY(50);
+        inside.setFill(Color.WHITE);
 
-        try {
-            Stage landingStage = new Stage();
-            AnchorPane landingRoot = new AnchorPane();
-            landingRoot.getChildren().add(fxmlLoader.load());
+        Label scoreLabel = new Label();
+        scoreLabel.setText("Your total score is: " + score + "/" + totalQuestions); scoreLabel.setLayoutX(298);scoreLabel.setLayoutX(350);
+        scoreLabel.setFont(new Font("Berlin Sans FB", 48));
 
-            Scene scene = new Scene(landingRoot, 1200, 800);
-            scene.getStylesheets().add(Objects.requireNonNull(StudyApplication.class.getResource("math-theme.css")).toExternalForm());
-            landingStage.setScene(scene);
-            landingStage.setResizable(false);
-            //landingStage.getIcons().add(new Image(Objects.requireNonNull(StudyApplication.class.getResourceAsStream())));
-            stage.close();
-            landingStage.show();
-        } catch(Exception _) { }
-    }
+        Button end = new Button();
+        end.setPrefWidth(320); end.setPrefHeight(80); end.setLayoutX(440); end.setLayoutY(565);
+        end.setText("End Test");
+        end.setOnAction(e-> {
+            addTest();
 
-    /**
-     * Method to start and move the timer through the application.
-     * @since 7/4/2025
-     * @author Nathaniel Rivera
-     */
-    protected void timer() throws InterruptedException {
-        Timer timer = new Timer();
-        /*
-        int min = 5;
-        int sec = 0;
+            FXMLLoader fxmlLoader = new FXMLLoader(StudyApplication.class.getResource("landing-view.fxml"));
 
-        setTimer(min, sec);
+            Stage stage = (Stage) submitButton.getScene().getWindow();
 
-        while(min != 0 && sec != 0) {
+            try {
+                Stage landingStage = new Stage();
+                AnchorPane landingRoot = new AnchorPane();
+                landingRoot.getChildren().add(fxmlLoader.load());
 
-            if(sec > 0) {
-                sec--;
-            } else if(min > 0 && sec == 0) {
-                min--;
-                sec = 59;
-            } else if(min == 0 && sec == 1) {
-                sec--;
-            }
+                Scene scene = new Scene(landingRoot, 1200, 800);
+                scene.getStylesheets().add(Objects.requireNonNull(StudyApplication.class.getResource("math-theme.css")).toExternalForm());
+                landingStage.setScene(scene);
+                landingStage.setResizable(false);
+                //landingStage.getIcons().add(new Image(Objects.requireNonNull(StudyApplication.class.getResourceAsStream())));
+                stage.close();
+                landingStage.show();
+            } catch(Exception _) { }
+        });
 
-            wait(1000);
-            setTimer(min, sec);
-            System.out.println("timed");
-        }*/
-    }
-
-    /**
-     * Sets the timer to the newly updated time.
-     * @since 7/4/2025
-     * @author Nathaniel Rivera
-     */
-    protected void setTimer(int min, int sec) {
-        if(min >= 10) {
-            if(sec >= 10) {
-                timerText.setText(min + ":" + sec);
-            } else {
-                timerText.setText(min + ":0" + sec);
-            }
-        } else if(sec >= 10) {
-            timerText.setText("0" + min + ":" + sec);
-        } else {
-            timerText.setText("0" + min + ":0" + sec);
-        }
+        root.getChildren().add(border);
+        root.getChildren().add(inside);
+        root.getChildren().add(scoreLabel);
+        root.getChildren().add(end);
     }
 
     /**
@@ -299,7 +322,7 @@ public class TestController implements Initializable {
         Map<String, Object> new_tests = new HashMap<>();
         new_tests.put("Subject", subject);
         new_tests.put("Date", time);
-        new_tests.put("Score", 0);
+        new_tests.put("Score", score);
         new_tests.put("Questions", totalQuestions);
         new_tests.put("Grade", gradeLevel);
         new_tests.put("Count", highestCount + 1);
