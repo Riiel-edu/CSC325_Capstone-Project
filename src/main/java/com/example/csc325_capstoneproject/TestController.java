@@ -184,6 +184,10 @@ public class TestController implements Initializable {
         numQuestionsLabel.setText("Question " + currentQuestion + " of " + totalQuestions);
 
         //questionLabel.setText(questions.get(currentQuestion - 1).getQuestionText());
+        //option1.setText(questions.get(currentQuestion - 1).getOptions().get(0));
+        //option2.setText(questions.get(currentQuestion - 1).getOptions().get(1);
+        //option3.setText(questions.get(currentQuestion - 1).getOptions().get(2);
+        //option4.setText(questions.get(currentQuestion - 1).getOptions().get(3);
 
         switch(answers.get(currentQuestion - 1)) {
             case -1 -> {
@@ -234,6 +238,10 @@ public class TestController implements Initializable {
         }
 
         //questionLabel.setText(questions.get(currentQuestion - 1).getQuestionText());
+        //option1.setText(questions.get(currentQuestion - 1).getOptions().get(0));
+        //option2.setText(questions.get(currentQuestion - 1).getOptions().get(1);
+        //option3.setText(questions.get(currentQuestion - 1).getOptions().get(2);
+        //option4.setText(questions.get(currentQuestion - 1).getOptions().get(3);
 
         if(currentQuestion != totalQuestions && nextButton.isDisable()) {
             nextButton.setDisable(false);
