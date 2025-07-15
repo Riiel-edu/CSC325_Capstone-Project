@@ -4,7 +4,6 @@ import com.example.csc325_capstoneproject.model.CurrentUser;
 import com.example.csc325_capstoneproject.model.Subject;
 import com.example.csc325_capstoneproject.model.Test;
 import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
 import javafx.collections.FXCollections;
@@ -18,11 +17,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.File;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
@@ -68,9 +65,6 @@ public class StudyController implements Initializable {
     protected Button scienceButton;
 
     @FXML
-    protected Button praticeButton;
-
-    @FXML
     protected Button testButton;
 
     @FXML
@@ -96,8 +90,6 @@ public class StudyController implements Initializable {
     public static int currentGradeLevel;
 
     public static int questionCount;
-
-    public static boolean isTimed;
 
     protected ObservableList<Test> math_tests = FXCollections.observableList(new LinkedList<>());
 
@@ -145,12 +137,9 @@ public class StudyController implements Initializable {
         tv_score.setCellValueFactory(new PropertyValueFactory<>("Score"));
         tv_count.setCellValueFactory(new PropertyValueFactory<>("questionCount"));
 
-        math_average = 0;
-        english_average = 0;
-        history_average = 0;
-        science_average = 0;
-
+        getAverages();
         averageUpdated();
+        percentLabel.setText(math_average + "%");
 
         tv.setItems(math_tests);
 
@@ -208,6 +197,7 @@ public class StudyController implements Initializable {
         }
 
         averageUpdated();
+        testButton.setDisable(false);
 
     }
 
@@ -239,6 +229,7 @@ public class StudyController implements Initializable {
         }
 
         averageUpdated();
+        testButton.setDisable(false);
 
     }
 
@@ -269,6 +260,7 @@ public class StudyController implements Initializable {
         }
 
         averageUpdated();
+        testButton.setDisable(false);
 
     }
 
@@ -299,6 +291,7 @@ public class StudyController implements Initializable {
         }
 
         averageUpdated();
+        testButton.setDisable(true);
 
     }
 
@@ -358,61 +351,12 @@ public class StudyController implements Initializable {
     }
 
     /**
-     * Method to set the variables for the test on the TestController screen for isTimed.
-     * @since 7/2/2025
-     * @author Nathaniel Rivera
-     */
-    public static boolean getTimed() {
-        return isTimed;
-    }
-
-    /**
-     * Swaps the screen to  a practice test without a timer
-     * @since 7/2/2025
-     * @author Nathaniel Rivera
-     */
-    @FXML
-    protected void practiceTest() {
-
-        isTimed = false;
-
-        FXMLLoader fxmlLoader = new FXMLLoader(StudyApplication.class.getResource("test-view.fxml"));
-
-        Stage stage = (Stage) testButton.getScene().getWindow();
-
-        try {
-            Stage testStage = new Stage();
-            AnchorPane testRoot = new AnchorPane();
-            testRoot.getChildren().add(fxmlLoader.load());
-
-            Scene scene = new Scene(testRoot, 1200, 700);
-
-            switch(currentSubject) {
-                case MATH -> scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("math-test.css")).toExternalForm());
-                case ENGLISH -> scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("english-test.css")).toExternalForm());
-                case HISTORY -> scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("history-test.css")).toExternalForm());
-                case SCIENCE -> scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("science-test.css")).toExternalForm());
-            }
-
-            testStage.setScene(scene);
-            testStage.setResizable(false);
-            //testStage.getIcons().add(new Image(Objects.requireNonNull(StudyApplication.class.getResourceAsStream())));
-            stage.close();
-            testStage.show();
-        } catch(Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    /**
      * Swaps the screen to a test with a timer
      * @since 7/2/2025
      * @author Nathaniel Rivera
      */
     @FXML
     public void test() {
-
-        isTimed = true;
 
         FXMLLoader fxmlLoader = new FXMLLoader(StudyApplication.class.getResource("test-view.fxml"));
 
@@ -536,7 +480,7 @@ public class StudyController implements Initializable {
                 for (QueryDocumentSnapshot document : documents) {
 
                     if(document.getData().get("User").equals(CurrentUser.getCurrentUID()) && document.getData().get("Subject").equals("ENGLISH")) {
-                        Test test = new Test(Subject.ENGLISH, Integer.parseInt((String) document.getData().get("Questions")), Integer.parseInt((String) document.getData().get("Score")), (String) document.getData().get("Date"), Integer.parseInt((String) document.getData().get("Grade")));
+                        Test test = new Test(Subject.ENGLISH, Integer.parseInt(String.valueOf(document.getData().get("Questions"))), Integer.parseInt(String.valueOf(document.getData().get("Score"))), (String) document.getData().get("Date"), Integer.parseInt(String.valueOf(document.getData().get("Grade"))));
                         english_tests.add(test);
                     }
                 }
@@ -570,7 +514,7 @@ public class StudyController implements Initializable {
                 for (QueryDocumentSnapshot document : documents) {
 
                     if(document.getData().get("User").equals(CurrentUser.getCurrentUID()) && document.getData().get("Subject").equals("HISTORY")) {
-                        Test test = new Test(Subject.HISTORY, Integer.parseInt((String) document.getData().get("Questions")), Integer.parseInt((String) document.getData().get("Score")), (String) document.getData().get("Date"), Integer.parseInt((String) document.getData().get("Grade")));
+                        Test test = new Test(Subject.HISTORY, Integer.parseInt(String.valueOf(document.getData().get("Questions"))), Integer.parseInt(String.valueOf(document.getData().get("Score"))), (String) document.getData().get("Date"), Integer.parseInt(String.valueOf(document.getData().get("Grade"))));
                         history_tests.add(test);
                     }
                 }
@@ -604,7 +548,7 @@ public class StudyController implements Initializable {
                 for (QueryDocumentSnapshot document : documents) {
 
                     if(document.getData().get("User").equals(CurrentUser.getCurrentUID()) && document.getData().get("Subject").equals("SCIENCE")) {
-                        Test test = new Test(Subject.SCIENCE, Integer.parseInt((String) document.getData().get("Questions")), Integer.parseInt((String) document.getData().get("Score")), (String) document.getData().get("Date"), Integer.parseInt((String) document.getData().get("Grade")));
+                        Test test = new Test(Subject.SCIENCE, Integer.parseInt(String.valueOf(document.getData().get("Questions"))), Integer.parseInt(String.valueOf(document.getData().get("Score"))), (String) document.getData().get("Date"), Integer.parseInt(String.valueOf(document.getData().get("Grade"))));
                         science_tests.add(test);
                     }
                 }
@@ -658,5 +602,43 @@ public class StudyController implements Initializable {
     @FXML
     protected void setPFP() {
         pfp.setImage(new Image(Objects.requireNonNull(StudyController.class.getResourceAsStream(CurrentUser.getPFP()))));
+    }
+
+    /**
+     * Gets the averages of all the lists
+     * @since 7/15/2025
+     * @author Nathaniel Rivera
+     */
+    protected void getAverages() {
+        int total = 0;
+
+        for (Test mathTest : math_tests) {
+            total += mathTest.getScore();
+        }
+
+        total /= math_tests.size();
+
+        math_average = total;
+
+        total = 0;
+
+        for (Test englishTest : english_tests) {
+            total += englishTest.getScore();
+        }
+
+        total /= english_tests.size();
+
+        english_average = total;
+
+        total = 0;
+
+        for (Test historyTest : history_tests) {
+            total += historyTest.getScore();
+        }
+
+        total /= history_tests.size();
+
+        history_average = total;
+
     }
 }

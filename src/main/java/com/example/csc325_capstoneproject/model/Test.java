@@ -29,7 +29,7 @@ public class Test {
     /**
      * An int storing the score of the test.
      */
-    private final int score;
+    private int score;
     /**
      * An int storing a count of how many test the child has taken for the given subject
      */
@@ -64,7 +64,8 @@ public class Test {
         this.num_correct = num_correct;
         this.date_taken = date_taken;
         this.grade_level = grade_level;
-        this.score = getScore();
+        double setScore = ((double) num_correct) / ((double) question_count) * 100;
+        this.score = (int) setScore;
     }
 
     /**
@@ -174,7 +175,17 @@ public class Test {
      * @return The score of the test in the form of a string.
      */
     public int getScore() {
-        return num_correct / question_count * 100;
+        return score;
+    }
+
+    /**
+     * Sets the score of the test'
+     * @param initScore The new score of the test
+     * @since 7/15/2025
+     * @author Nathaniel Rivera
+     */
+    public void setScore(int initScore) {
+        score = initScore;
     }
 
     /**

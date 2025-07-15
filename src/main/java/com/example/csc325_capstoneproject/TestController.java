@@ -48,9 +48,6 @@ public class TestController implements Initializable {
     protected Label subjectLabel;
 
     @FXML
-    protected Label timerText;
-
-    @FXML
     protected Label gradeLabel;
 
     @FXML
@@ -95,8 +92,6 @@ public class TestController implements Initializable {
 
     protected int gradeLevel;
 
-    protected boolean isTimed;
-
     protected int highestCount;
 
     protected int lowestCountTest;
@@ -120,7 +115,6 @@ public class TestController implements Initializable {
         subject = StudyController.getCurrentSubject();
         gradeLevel = StudyController.getCurrentGradeLevel();
         totalQuestions = StudyController.getQuestionCount();
-        isTimed = StudyController.getTimed();
         currentQuestion = 1;
 
         subjectLabel.setText("Subject: " + subject);
