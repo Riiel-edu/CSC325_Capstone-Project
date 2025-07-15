@@ -4,9 +4,9 @@ package com.example.csc325_capstoneproject.model;
 import java.util.List;
 
 public class Question {
-    private String questionText;
-    private List<String> options;
-    private int correctAnswerIndex; // Changed from String to int
+    public String questionText;
+    public List<String> options;
+    public int correctAnswerIndex; // Changed from String to int
 
     // Getters
     public String getQuestionText() {

@@ -20,12 +20,6 @@
       <Button fx:id="previousButton" layoutX="50.0" layoutY="620.0" mnemonicParsing="false" onAction="#previous" prefHeight="55.0" prefWidth="155.0" text="Previous" />
       <Button fx:id="nextButton" layoutX="522.0" layoutY="620.0" mnemonicParsing="false" onAction="#next" prefHeight="55.0" prefWidth="155.0" text="Next" />
       <Button fx:id="submitButton" layoutX="959.0" layoutY="620.0" mnemonicParsing="false" onAction="#submit" prefHeight="55.0" prefWidth="155.0" text="Submit" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="68.0" layoutX="986.0" layoutY="19.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-      <Label fx:id="timerText" layoutX="1026.0" layoutY="27.0" text="00:00">
-         <font>
-            <Font name="Berlin Sans FB" size="46.0" />
-         </font>
-      </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="302.0" layoutX="225.0" layoutY="271.0" stroke="BLACK" strokeType="INSIDE" width="718.0" />
       <VBox fx:id="optionsContainer" alignment="CENTER_LEFT" layoutX="233.0" layoutY="283.0" prefHeight="278.0" prefWidth="718.0" spacing="15.0">
          <children>

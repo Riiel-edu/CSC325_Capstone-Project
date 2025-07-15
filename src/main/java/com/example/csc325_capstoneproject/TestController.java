@@ -135,12 +135,12 @@ public class TestController implements Initializable {
             case SCIENCE -> questions = quizGen.generateAITest("Science", gradeLevel, totalQuestions);
         }
 
-        //not working
-        //questionLabel.setText(questions.get(currentQuestion - 1).getQuestionText());
-        //option1.setText(questions.get(currentQuestion - 1).getOptions().get(0));
-        //option2.setText(questions.get(currentQuestion - 1).getOptions().get(1);
-        //option3.setText(questions.get(currentQuestion - 1).getOptions().get(2);
-        //option4.setText(questions.get(currentQuestion - 1).getOptions().get(3);
+        questionLabel.setText(questions.get(currentQuestion - 1).getQuestionText());
+
+        option1.setText(questions.get(currentQuestion - 1).getOptions().get(0));
+        option2.setText(questions.get(currentQuestion - 1).getOptions().get(1));
+        option3.setText(questions.get(currentQuestion - 1).getOptions().get(2));
+        option4.setText(questions.get(currentQuestion - 1).getOptions().get(3));
 
         answers = new ArrayList<>();
         for(int i = 0; i < totalQuestions; i++) {
@@ -183,11 +183,13 @@ public class TestController implements Initializable {
         currentQuestion++;
         numQuestionsLabel.setText("Question " + currentQuestion + " of " + totalQuestions);
 
-        //questionLabel.setText(questions.get(currentQuestion - 1).getQuestionText());
-        //option1.setText(questions.get(currentQuestion - 1).getOptions().get(0));
-        //option2.setText(questions.get(currentQuestion - 1).getOptions().get(1);
-        //option3.setText(questions.get(currentQuestion - 1).getOptions().get(2);
-        //option4.setText(questions.get(currentQuestion - 1).getOptions().get(3);
+        questionLabel.setText(questions.get(currentQuestion - 1).getQuestionText());
+
+
+        option1.setText(questions.get(currentQuestion - 1).getOptions().get(0));
+        option2.setText(questions.get(currentQuestion - 1).getOptions().get(1));
+        option3.setText(questions.get(currentQuestion - 1).getOptions().get(2));
+        option4.setText(questions.get(currentQuestion - 1).getOptions().get(3));
 
         switch(answers.get(currentQuestion - 1)) {
             case -1 -> {
@@ -237,11 +239,11 @@ public class TestController implements Initializable {
             case 3 -> option4.setSelected(true);
         }
 
-        //questionLabel.setText(questions.get(currentQuestion - 1).getQuestionText());
-        //option1.setText(questions.get(currentQuestion - 1).getOptions().get(0));
-        //option2.setText(questions.get(currentQuestion - 1).getOptions().get(1);
-        //option3.setText(questions.get(currentQuestion - 1).getOptions().get(2);
-        //option4.setText(questions.get(currentQuestion - 1).getOptions().get(3);
+        questionLabel.setText(questions.get(currentQuestion - 1).getQuestionText());
+        option1.setText(questions.get(currentQuestion - 1).getOptions().get(0));
+        option2.setText(questions.get(currentQuestion - 1).getOptions().get(1));
+        option3.setText(questions.get(currentQuestion - 1).getOptions().get(2));
+        option4.setText(questions.get(currentQuestion - 1).getOptions().get(3));
 
         if(currentQuestion != totalQuestions && nextButton.isDisable()) {
             nextButton.setDisable(false);
@@ -260,11 +262,11 @@ public class TestController implements Initializable {
     @FXML
     protected void submit() {
 
-        //for(int i = 0; answers.size() > i; i++) {
-        //    if(answers.get(i) == questions.get(i).getCorrectAnswerIndex()) {
-        //        score++;
-        //    }
-        //}
+        for(int i = 0; answers.size() > i; i++) {
+            if(answers.get(i) == questions.get(i).getCorrectAnswerIndex()) {
+                score++;
+            }
+        }
 
         Rectangle border = new Rectangle();
         border.setWidth(1200); border.setHeight(700);
@@ -282,6 +284,9 @@ public class TestController implements Initializable {
         end.setPrefWidth(320); end.setPrefHeight(80); end.setLayoutX(440); end.setLayoutY(565);
         end.setText("End Test");
         end.setOnAction(e-> {
+
+            end.setDisable(true);
+
             addTest();
 
             FXMLLoader fxmlLoader = new FXMLLoader(StudyApplication.class.getResource("landing-view.fxml"));
@@ -300,7 +305,9 @@ public class TestController implements Initializable {
                 //landingStage.getIcons().add(new Image(Objects.requireNonNull(StudyApplication.class.getResourceAsStream())));
                 stage.close();
                 landingStage.show();
-            } catch(Exception _) { }
+            } catch(Exception error) {
+                System.out.println(error);
+            }
         });
 
         root.getChildren().add(border);
