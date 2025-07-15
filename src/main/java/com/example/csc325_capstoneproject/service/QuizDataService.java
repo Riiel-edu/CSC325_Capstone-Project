@@ -22,6 +22,8 @@ public class QuizDataService {
     /**
      * Loads all questions from the local questions.json file.
      * @return A list of all questions from the file.
+     * @since 7/10/25
+     * @author Robert Shupe
      */
     public List<Question> loadAllQuestions() {
         try {
@@ -49,12 +51,15 @@ public class QuizDataService {
      * Generates a new test with 15 unique questions for a specific subject and grade level using AI.
      * @param subject The subject of the questions (e.g., "Math", "History", "English").
      * @param gradeLevel The grade level for the questions (e.g., 1-5).
+     * @param questionCount The amount of questions for the test.
      * @return A list containing 15 new questions.
+     * @since 7/10/25
+     * @author Robert Shupe
      */
-    public List<Question> generateAITest(String subject, int gradeLevel) {
+    public List<Question> generateAITest(String subject, int gradeLevel, int questionCount) {
         try {
             // Call the AI service to generate 15 questions for the given subject and grade
-            return aiService.generateQuestions(subject, gradeLevel, 25);
+            return aiService.generateQuestions(subject, gradeLevel, questionCount);
         } catch (IOException e) {
             System.err.println("Failed to generate questions using AI: " + e.getMessage());
             e.printStackTrace();

@@ -410,7 +410,7 @@ public class StudyController implements Initializable {
      * @author Nathaniel Rivera
      */
     @FXML
-    protected void test() {
+    public void test() {
 
         isTimed = true;
 

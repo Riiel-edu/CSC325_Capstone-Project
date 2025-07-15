@@ -2,12 +2,14 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325_capstoneproject.TestController">
+<AnchorPane fx:id="root" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325_capstoneproject.TestController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="106.0" stroke="BLACK" strokeType="INSIDE" width="1200.0" />
       <Label fx:id="subjectLabel" layoutX="28.0" layoutY="22.0" text="Subject: Math" />
@@ -15,15 +17,36 @@
       <Label fx:id="numQuestionsLabel" layoutX="544.0" layoutY="179.0" text="Question ? of ?" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="400.0" layoutX="209.0" layoutY="206.0" stroke="BLACK" strokeType="INSIDE" width="750.0" />
       <Label fx:id="questionLabel" layoutX="225.0" layoutY="230.0" text="Question Area" />
-      <TextArea fx:id="answerField" layoutX="220.0" layoutY="295.0" prefHeight="289.0" prefWidth="727.0" />
       <Button fx:id="previousButton" layoutX="50.0" layoutY="620.0" mnemonicParsing="false" onAction="#previous" prefHeight="55.0" prefWidth="155.0" text="Previous" />
       <Button fx:id="nextButton" layoutX="522.0" layoutY="620.0" mnemonicParsing="false" onAction="#next" prefHeight="55.0" prefWidth="155.0" text="Next" />
       <Button fx:id="submitButton" layoutX="959.0" layoutY="620.0" mnemonicParsing="false" onAction="#submit" prefHeight="55.0" prefWidth="155.0" text="Submit" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="68.0" layoutX="986.0" layoutY="19.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-      <Label fx:id="timerText" layoutX="1026.0" layoutY="27.0" text="00:00">
-         <font>
-            <Font name="Berlin Sans FB" size="46.0" />
-         </font>
-      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="302.0" layoutX="225.0" layoutY="271.0" stroke="BLACK" strokeType="INSIDE" width="718.0" />
+      <VBox fx:id="optionsContainer" alignment="CENTER_LEFT" layoutX="233.0" layoutY="283.0" prefHeight="278.0" prefWidth="718.0" spacing="15.0">
+         <children>
+            <RadioButton fx:id="option1" mnemonicParsing="false" text="Option 1">
+               <toggleGroup>
+                  <ToggleGroup fx:id="optionsGroup" />
+               </toggleGroup>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="option2" mnemonicParsing="false" text="Option 2" toggleGroup="$optionsGroup">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="option3" mnemonicParsing="false" text="Option 3" toggleGroup="$optionsGroup">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="option4" mnemonicParsing="false" text="Option 4" toggleGroup="$optionsGroup">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </RadioButton>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
