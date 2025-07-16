@@ -2,10 +2,6 @@ package com.example.csc325_capstoneproject;
 
 import com.example.csc325_capstoneproject.model.CurrentUser;
 import com.example.csc325_capstoneproject.model.User;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthException;
-import com.google.firebase.auth.ListUsersPage;
-import com.google.firebase.auth.UserRecord;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,10 +12,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.*;
+import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.LinkedList;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
+
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 public class LoginController implements Initializable {
 
@@ -40,122 +42,124 @@ public class LoginController implements Initializable {
 
     protected static boolean loginStatus = false;
 
-    protected LinkedList<User> users = new LinkedList<>();
+    private final String apiKey = "AIzaSyC9E1Pb24XtJUCOwEuae9mqRIWtBjXpfxE";
 
-    /**
-     * Retrieves the list of Users to make sure the new User has a unique username and email.
-     * @param url URL.
-     * @param resourceBundle ResourceBundle.
-     * @since 6/27/25
-     * @author Nathaniel Rivera
-     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        try {
-            ListUsersPage page = FirebaseAuth.getInstance().listUsers(null);
-            for (UserRecord user : page.iterateAll()) {
-                User newUser = new User(user.getDisplayName(), user.getEmail(), user.getUid());
-                users.add(newUser);
-            }
-        } catch (FirebaseAuthException e) {
-            throw new RuntimeException(e);
-        }
-
-        /*--------------------------------------------Regex Patterns--------------------------------------------------*/
-
+        // Live validation with regex
         Pattern emailPattern = Pattern.compile("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,6}$");
         Pattern passwordPattern = Pattern.compile("\\w{2,25}");
 
-        /*------------------------------------------Live Updates to UI------------------------------------------------*/
-
-        // Live border coloring while typing
         emailField.textProperty().addListener((obs, oldText, newText) -> {
             boolean valid = emailPattern.matcher(newText).matches();
             emailField.setStyle(valid ? "-fx-border-color: Lime;" : "-fx-border-color: red;");
         });
 
-        // Show/hide error message on focus loss
-        emailField.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
-            if (!isNowFocused) {
-                boolean valid = emailPattern.matcher(emailField.getText()).matches();
-                //emailError.setText(valid ? "" : "Must be a valid email address format");
-                emailField.setStyle(valid ? "-fx-border-color: Lime;" : "-fx-border-color: red;");
-            }
-        });
-
-        // Live border coloring while typing
         passwordField.textProperty().addListener((obs, oldText, newText) -> {
             boolean valid = passwordPattern.matcher(newText).matches();
             passwordField.setStyle(valid ? "-fx-border-color: Lime;" : "-fx-border-color: red;");
         });
-        // Show/hide error message on focus loss
-        passwordField.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
-            if (!isNowFocused) {
-                boolean valid = passwordPattern.matcher(passwordField.getText()).matches();
-                //passwordError.setText(valid ? "" : "2–25 characters, letters or digits only");
-                passwordField.setStyle(valid ? "-fx-border-color: Lime;" : "-fx-border-color: red;");
-            }
-        });
-
     }
 
-    /**
-     * Logs the current user into the application,
-     * @since 6/28/2025
-     * @author Nathaniel Rivera
-     */
+    /** Login button click handler (no-arg for FXML) **/
     @FXML
     protected void login() {
-
-        boolean canLogin;
-        User currUser = null;
-        String email = emailField.getText();
-        String password = passwordField.getText();
-
-        if (password.isEmpty() || email.isEmpty()) {
-            System.out.println("Error: One or more fields do not have inputs");
-            //errorLabel.setText("All fields must be filled."); // Print error to UI
-
-            // Highlight empty fields with a red border
-            if (password.isEmpty()) passwordField.setStyle("-fx-border-color: red;");
-            if (email.isEmpty()) emailField.setStyle("-fx-border-color: red;");
-            canLogin = false;
-        } else {
-            canLogin = true;
-
-            try {
-                User user = new User(StudyApplication.fauth.getUserByEmail(email).getDisplayName(), StudyApplication.fauth.getUserByEmail(email).getEmail(), StudyApplication.fauth.getUserByEmail(email).getUid());
-                CurrentUser.setCurrentUser(user);
-                loginStatus = true;
-                System.out.println("User successfully logged in");
-            } catch (FirebaseAuthException e) {
-                //errorLabel.setText("An account with this email does not exist"); // print error to UI
-            }
-        }
-
-        if(canLogin) {
-            Stage stage = (Stage) loginButton.getScene().getWindow();
-
-            stage.close();
-        } else {
-            //errorLabel.setText("Username, email, or password are incorrect."); // print error to UI
-        }
-
+        login(null);
     }
 
-    /**
-     * Swaps the scene from the Login Screen to the Register Screen.
-     * @since 6/28/2025
-     * @author Nathaniel Rivera
-     */
+    /** Actual login with optional ActionEvent **/
+    protected void login(Void unused) {
+        String email = emailField.getText().trim();
+        String password = passwordField.getText().trim();
+
+        if (email.isEmpty() || password.isEmpty()) {
+            System.out.println("Error: All fields are required.");
+            if (email.isEmpty()) emailField.setStyle("-fx-border-color: red;");
+            if (password.isEmpty()) passwordField.setStyle("-fx-border-color: red;");
+            return;
+        }
+
+        boolean success = firebaseLogin(email, password);
+
+        if (success) {
+            System.out.println("✅ Login successful!");
+            loginStatus = true;
+
+            Stage stage = (Stage) loginButton.getScene().getWindow();
+            stage.close();
+        } else {
+            System.out.println("❌ Login failed. Incorrect email or password.");
+        }
+    }
+
+    /** REST call to Firebase Auth **/
+    private boolean firebaseLogin(String email, String password) {
+        try {
+            URL url = new URL("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + apiKey);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+            conn.setDoOutput(true);
+
+            // ✅ No URLEncoder here. Raw JSON with email and password.
+            String payload = String.format(
+                    "{\"email\":\"%s\",\"password\":\"%s\",\"returnSecureToken\":true}",
+                    email,
+                    password
+            );
+
+            try (OutputStream os = conn.getOutputStream()) {
+                os.write(payload.getBytes(StandardCharsets.UTF_8));
+                os.flush();
+            }
+
+            int responseCode = conn.getResponseCode();
+
+            if (responseCode == 200) {
+                try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8))) {
+                    StringBuilder response = new StringBuilder();
+                    String responseLine;
+                    while ((responseLine = br.readLine()) != null) {
+                        response.append(responseLine.trim());
+                    }
+
+                    JsonObject json = JsonParser.parseString(response.toString()).getAsJsonObject();
+                    String idToken = json.get("idToken").getAsString();
+                    String localId = json.get("localId").getAsString();
+
+                    System.out.println("✅ Firebase says login is successful. ID Token: " + idToken);
+
+                    User user = new User(email, email, localId);
+                    CurrentUser.setCurrentUser(user);
+
+                    return true;
+                }
+            } else {
+                try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getErrorStream(), StandardCharsets.UTF_8))) {
+                    StringBuilder errorResponse = new StringBuilder();
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        errorResponse.append(line.trim());
+                    }
+                    System.out.println("❌ Firebase login error: " + errorResponse);
+                }
+                return false;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /** Register button click handler (for FXML) **/
     @FXML
     protected void register() {
-        FXMLLoader fxmlLoader = new FXMLLoader(StudyApplication.class.getResource("register-view.fxml"));
-
-        Stage stage = (Stage) registerButton.getScene().getWindow();
-
         try {
+            FXMLLoader fxmlLoader = new FXMLLoader(StudyApplication.class.getResource("register-view.fxml"));
+            Stage stage = (Stage) registerButton.getScene().getWindow();
+
             Stage registerStage = new Stage();
             AnchorPane registerRoot = new AnchorPane();
             registerRoot.getChildren().add(fxmlLoader.load());
@@ -166,18 +170,12 @@ public class LoginController implements Initializable {
             registerStage.initStyle(StageStyle.UNDECORATED);
             stage.close();
             registerStage.show();
-        } catch(Exception ex) {
-            System.out.println("Error");
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
-
     }
 
-    /**
-     * Closes the Login Screen
-     * @since 6/28/2025
-     * @author Nathaniel Rivera
-     */
+    /** Close button click handler (for FXML) **/
     @FXML
     protected void close() {
         Stage stage = (Stage) closeButton.getScene().getWindow();
@@ -185,18 +183,14 @@ public class LoginController implements Initializable {
     }
 
     /**
-     * Static method that updates the users login status
-     * @since 7/7/2025
-     * @author Nathaniel Rivera
+     * Static method that updates the user's login status
      */
     public static void updateLoginStatus(boolean status) {
         loginStatus = status;
     }
 
     /**
-     * Static method that returns the users login status.
-     * @since 7/7/2025
-     * @author Nathaniel Rivera
+     * Static method that returns the user's login status
      */
     public static boolean getLoginStatus() {
         return loginStatus;
