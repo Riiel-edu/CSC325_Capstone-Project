@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -15,8 +16,8 @@ import javafx.stage.StageStyle;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
@@ -167,6 +168,7 @@ public class LoginController implements Initializable {
             Scene scene = new Scene(registerRoot, 650, 380);
             registerStage.setScene(scene);
             registerStage.setResizable(false);
+            registerStage.getIcons().add(new Image(Objects.requireNonNull(StudyApplication.class.getResourceAsStream("/com/example/csc325_capstoneproject/images/learningtrack.png"))));
             registerStage.initStyle(StageStyle.UNDECORATED);
             stage.close();
             registerStage.show();

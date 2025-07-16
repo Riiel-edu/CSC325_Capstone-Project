@@ -15,10 +15,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -296,7 +296,7 @@ public class TestController implements Initializable {
                 scene.getStylesheets().add(Objects.requireNonNull(StudyApplication.class.getResource("math-theme.css")).toExternalForm());
                 landingStage.setScene(scene);
                 landingStage.setResizable(false);
-                //landingStage.getIcons().add(new Image(Objects.requireNonNull(StudyApplication.class.getResourceAsStream())));
+                landingStage.getIcons().add(new Image(Objects.requireNonNull(StudyApplication.class.getResourceAsStream("/com/example/csc325_capstoneproject/images/learningtrack.png"))));
                 stage.close();
                 landingStage.show();
             } catch(Exception error) {

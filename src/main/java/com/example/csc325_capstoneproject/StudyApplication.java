@@ -1,16 +1,15 @@
 package com.example.csc325_capstoneproject;
 
 import com.example.csc325_capstoneproject.model.FirestoreContext;
-import com.example.csc325_capstoneproject.model.Test;
 import com.google.cloud.firestore.Firestore;
 import com.google.firebase.auth.FirebaseAuth;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -101,7 +100,7 @@ public class StudyApplication extends Application {
                 scene.getStylesheets().add(Objects.requireNonNull(StudyApplication.class.getResource("math-theme.css")).toExternalForm());
                 landingStage.setScene(scene);
                 landingStage.setResizable(false);
-                //landingStage.getIcons().add(new Image(Objects.requireNonNull(StudyApplication.class.getResourceAsStream())));
+                landingStage.getIcons().add(new Image(Objects.requireNonNull(StudyApplication.class.getResourceAsStream("/com/example/csc325_capstoneproject/images/learningtrack.png"))));
                 stage.close();
                 landingStage.show();
             } catch(Exception _) { }
@@ -158,7 +157,7 @@ public class StudyApplication extends Application {
                 loginStage.setScene(scene);
                 loginStage.setResizable(false);
                 loginStage.initStyle(StageStyle.TRANSPARENT);
-                //loginStage.getIcons().add(new Image(Objects.requireNonNull(StudyApplication.class.getResourceAsStream())));
+                loginStage.getIcons().add(new Image(Objects.requireNonNull(StudyApplication.class.getResourceAsStream("/com/example/csc325_capstoneproject/images/learningtrack.png"))));
                 loginStage.show();
             } catch(Exception ex) {
                 ex.printStackTrace();

@@ -12,12 +12,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.net.URL;
 import java.util.LinkedList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -261,6 +263,7 @@ public class RegisterController implements Initializable {
             Scene scene = new Scene(loginRoot, 650, 380);
             loginStage.setScene(scene);
             loginStage.setResizable(false);
+            loginStage.getIcons().add(new Image(Objects.requireNonNull(StudyApplication.class.getResourceAsStream("/com/example/csc325_capstoneproject/images/learningtrack.png"))));
             loginStage.initStyle(StageStyle.UNDECORATED);
             stage.close();
             loginStage.show();

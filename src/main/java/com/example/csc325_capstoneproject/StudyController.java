@@ -315,7 +315,7 @@ public class StudyController implements Initializable {
             pfpStage.setScene(scene);
             pfpStage.setResizable(false);
             pfpStage.initStyle(StageStyle.TRANSPARENT);
-            //landingStage.getIcons().add(new Image(Objects.requireNonNull(StudyApplication.class.getResourceAsStream())));
+            pfpStage.getIcons().add(new Image(Objects.requireNonNull(StudyApplication.class.getResourceAsStream("/com/example/csc325_capstoneproject/images/learningtrack.png"))));
 
             pfpStage.show();
 
@@ -377,7 +377,7 @@ public class StudyController implements Initializable {
             //testStage.getStylesheets().add(Objects.requireNonNull(getClass().getResource("splashscreen.css")).toExternalForm());
             testStage.setScene(scene);
             testStage.setResizable(false);
-            //testStage.getIcons().add(new Image(Objects.requireNonNull(StudyApplication.class.getResourceAsStream())));
+            testStage.getIcons().add(new Image(Objects.requireNonNull(StudyApplication.class.getResourceAsStream("/com/example/csc325_capstoneproject/images/learningtrack.png"))));
             stage.close();
             testStage.show();
         } catch(Exception ex) {
