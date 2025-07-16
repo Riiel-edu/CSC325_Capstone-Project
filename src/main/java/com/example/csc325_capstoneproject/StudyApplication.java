@@ -51,7 +51,7 @@ public class StudyApplication extends Application {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.initStyle(StageStyle.TRANSPARENT);
-        //stage.getIcons().add(new Image(Objects.requireNonNull(StudyApplication.class.getResourceAsStream())));
+        stage.getIcons().add(new Image(Objects.requireNonNull(StudyApplication.class.getResourceAsStream("/com/example/csc325_capstoneproject/images/learningtrack.png"))));
         stage.show();
     }
 
