@@ -1,7 +1,5 @@
 package com.example.csc325_capstoneproject.service;
 
-
-
 import com.example.csc325_capstoneproject.model.Question;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -25,17 +23,7 @@ public class AIQuestionService {
     private final OkHttpClient client = new OkHttpClient();
     private final Gson gson = new Gson();
 
-    /**
-     * Generates a specified number of questions for a given subject and grade level.
-     * @param subject The topic for the questions (e.g., "History", "Math").
-     * @param gradeLevel The academic level for the questions (e.g., 1, 2, 3, 4, 5).
-     * @param count The number of questions to generate.
-     * @return A list of Question objects.
-     * @throws IOException If the API call fails.
-     */
     public List<Question> generateQuestions(String subject, int gradeLevel, int count) throws IOException {
-        // --- DYNAMIC PROMPT ---
-        // This prompt now generates questions based on the subject and grade level parameters.
         String prompt = String.format(
                 "Generate %d unique, multiple-choice questions about %s appropriate for a grade %d student. " +
                         "Provide your response as a raw JSON array of objects. " +
@@ -48,7 +36,14 @@ public class AIQuestionService {
                 count, subject, gradeLevel
         );
 
-        String jsonBody = "{\"contents\":[{\"parts\":[{\"text\": \"" + prompt + "\"}]}]}";
+        // We now include the "generationConfig" object to control the AI's randomness.
+        String jsonBody = "{" +
+                "\"contents\":[{\"parts\":[{\"text\": \"" + prompt + "\"}]}]," +
+                "\"generationConfig\": {" +
+                "  \"temperature\": 0.8" + // This introduces randomness
+                "}" +
+                "}";
+
         RequestBody body = RequestBody.create(jsonBody, MediaType.get("application/json; charset=utf-8"));
 
         Request request = new Request.Builder()
@@ -63,7 +58,6 @@ public class AIQuestionService {
 
             String responseBody = response.body().string();
 
-            // Navigates the JSON response to extract the text containing the question array
             JsonObject responseObject = gson.fromJson(responseBody, JsonObject.class);
             String questionsJsonText = responseObject.getAsJsonArray("candidates")
                     .get(0).getAsJsonObject()
@@ -72,7 +66,6 @@ public class AIQuestionService {
                     .get(0).getAsJsonObject()
                     .get("text").getAsString();
 
-            // Deserializes the extracted JSON text into a list of Question objects
             Type questionListType = new TypeToken<List<Question>>() {}.getType();
             return gson.fromJson(questionsJsonText, questionListType);
         } catch (Exception e) {

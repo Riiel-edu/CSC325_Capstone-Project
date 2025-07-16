@@ -1,7 +1,5 @@
 package com.example.csc325_capstoneproject.service;
 
-
-
 import com.example.csc325_capstoneproject.model.Question;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -48,23 +46,27 @@ public class QuizDataService {
     }
 
     /**
-     * Generates a new test with 15 unique questions for a specific subject and grade level using AI.
-     * @param subject The subject of the questions (e.g., "Math", "History", "English").
+     * Generates a new test with unique questions for a specific subject and grade level using AI.
+     * If the AI service fails, it loads a default set of questions from a local file.
+     * @param subject The subject of the questions (e.g., "Math", "History", "English", "Science").
      * @param gradeLevel The grade level for the questions (e.g., 1-5).
      * @param questionCount The amount of questions for the test.
-     * @return A list containing 15 new questions.
+     * @return A list of new questions.
      * @since 7/10/25
      * @author Robert Shupe
      */
     public List<Question> generateAITest(String subject, int gradeLevel, int questionCount) {
         try {
-            // Call the AI service to generate 15 questions for the given subject and grade
+            // Attempt to generate questions using the AI service
+            System.out.println("Attempting to generate AI test...");
             return aiService.generateQuestions(subject, gradeLevel, questionCount);
         } catch (IOException e) {
-            System.err.println("Failed to generate questions using AI: " + e.getMessage());
-            e.printStackTrace();
-            // You could have a fallback here to load from a local file if the API fails
-            return null;
+            System.err.println("AI service failed: " + e.getMessage());
+
+            // --- ✅ FALLBACK IMPLEMENTATION ---
+            // If the AI fails, load questions from the local file instead.
+            System.err.println("Falling back to local questions.json file.");
+            return loadAllQuestions(); // <-- USAGE IS HERE
         }
     }
 }
