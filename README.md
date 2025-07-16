@@ -43,3 +43,5 @@ Low, Brian - Frontend and UI Designer
 Berio, Carlos - UI and UX Developer
 
 Shupe, Robert - Frontend Developer
+
+Vakil, Huma - UI Designer
