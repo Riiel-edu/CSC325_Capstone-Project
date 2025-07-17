@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -23,6 +24,8 @@ import java.util.regex.Pattern;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import javafx.animation.PauseTransition;
+import javafx.util.Duration;
 
 public class LoginController implements Initializable {
 
@@ -40,6 +43,10 @@ public class LoginController implements Initializable {
 
     @FXML
     protected TextField passwordField;
+
+    @FXML
+    protected Label loginMessageLabel;
+
 
     protected static boolean loginStatus = false;
 
@@ -82,7 +89,7 @@ public class LoginController implements Initializable {
 
         boolean success = firebaseLogin(email, password);
 
-        if (success) {
+       /* if (success) {
             System.out.println("✅ Login successful!");
             loginStatus = true;
 
@@ -92,8 +99,26 @@ public class LoginController implements Initializable {
             System.out.println("❌ Login failed. Incorrect email or password.");
         }
     }
+*/
+        if (success) {
+            loginMessageLabel.setText("✅ Login successful!");
+            loginMessageLabel.setTextFill(javafx.scene.paint.Color.GREEN);
+            loginStatus = true;
 
-    /** REST call to Firebase Auth **/
+            // Delay a little before closing to show message
+            PauseTransition pause = new PauseTransition(Duration.seconds(1.5));
+            pause.setOnFinished(e -> {
+                Stage stage = (Stage) loginButton.getScene().getWindow();
+                stage.close();
+            });
+            pause.play();
+
+        } else {
+            loginMessageLabel.setText("❌ Incorrect email or password.");
+            loginMessageLabel.setTextFill(javafx.scene.paint.Color.RED);
+        }
+    }
+        /** REST call to Firebase Auth **/
     private boolean firebaseLogin(String email, String password) {
         try {
             URL url = new URL("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + apiKey);
