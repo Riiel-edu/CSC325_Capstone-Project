@@ -64,6 +64,14 @@
          <font>
             <Font name="Arial Rounded MT Bold" size="22.0" />
          </font></Button>
+
+      <!-- ✅ Login Message Label added below -->
+      <Label fx:id="loginMessageLabel" layoutX="334.0" layoutY="340.0" prefWidth="306.0" text="" textFill="WHITE">
+         <font>
+            <Font name="Berlin Sans FB" size="10.0" />
+         </font>
+      </Label>
+
       <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="630.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/white_close_symbol.png" />
@@ -84,3 +92,4 @@
       <Line endX="100.0" layoutX="486.0" layoutY="59.0" startX="-100.0" stroke="WHITE" />
    </children>
 </AnchorPane>
+
