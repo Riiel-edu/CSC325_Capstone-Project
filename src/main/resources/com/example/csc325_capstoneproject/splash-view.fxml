@@ -7,9 +7,10 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #A39BD8;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #A39BD8;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Rectangle fill="#7b65b9" height="700.0" opacity="0.5" stroke="#616161" strokeType="INSIDE" width="86.0" />
+        <Rectangle height="700.0" layoutX="1.0" opacity="0.5" stroke="#616161" strokeType="INSIDE" width="86.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="700.0" layoutX="-2.0" stroke="BLACK" strokeType="INSIDE" width="86.0" />
         <Label layoutX="-68.0" layoutY="554.0" style="-fx-rotate: 90;" text="LearningTrack" textFill="WHITE">
             <font>
                 <Font name="Berlin Sans FB" size="37.0" />
@@ -38,6 +39,11 @@
       <ImageView fitHeight="493.0" fitWidth="412.0" layoutX="374.0" layoutY="197.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/students_study.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="81.0" fitWidth="86.0" layoutX="1.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/learningtrackBW.png" />
          </image>
       </ImageView>
     </children>
