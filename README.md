@@ -3,6 +3,11 @@
 - [Overview](#overview)
 - [How to Use](#how-to-use)
 - [Layouts and Formatting](#layouts-and-formatting)
+  - [Splash Screen](#splash-screen)
+  - [Login Screen](#login-screen)
+  - [Register Screen](#register-screen)
+  - [Landing Screen](#landing-screen)
+  - [Test Screen](#test-screen)
 - [Links](#links)
 - [Technology](#technology)
 - [Presentation](#presentation)
@@ -18,19 +23,19 @@ LearningTrack allows students in grade levels 1 through 5 to practice and test t
 
 ## Layouts and Formatting
 
-## Splash Screen
+# Splash Screen
 
 (Insert Splash Screen image later)
 
 The Splash Screen of the LearningTrack application serves as the main hub for access into the platform. Designed with a calming color and child-friendly interface, it features a simple and inviting layout that appeals to young students while maintaining a clean, organized structure. At the top of the screen is a custom taskbar, which includes three main controls: a Close button to safely exit the app, a Minimize button for keeping the app running in the background, and a Login button that directs users to the login page. This login step ensures that students can save their progress and view personalized recommendations. Most importantly, the Start button launches the main application, taking the user into their tailored learning environment based on the selected account.
 
-## Login Screen
+# Login Screen
 
 (Insert Login Screen image later)
 
 The Login Screen of the LearningTrack application is a standard login interface. It features a clean design along with a custom taskbar. The taskbar includes only a close button, with similar design to the splash screen buttons. The screen contains three input fields: one each for the user's username, email, and password. Beneath the input fields are two buttons: the Login button and a Register link. The Login button functions by checking the entered username, email, and password against the application's user database. If the credentials do not match an existing account, an error message will be displayed and the user will remain on the login screen. If the credentials are correct, the user will be logged in and redirected to the Landing Screen.
 
-## Register Screen
+# Register Screen
 
 (Insert Register Screen image later)
 
