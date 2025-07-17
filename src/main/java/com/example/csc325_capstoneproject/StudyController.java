@@ -616,7 +616,9 @@ public class StudyController implements Initializable {
             total += mathTest.getScore();
         }
 
-        total /= math_tests.size();
+        if (!math_tests.isEmpty()) {
+            total /= math_tests.size();
+        }
 
         math_average = total;
 
@@ -626,7 +628,9 @@ public class StudyController implements Initializable {
             total += englishTest.getScore();
         }
 
-        total /= english_tests.size();
+        if (!english_tests.isEmpty()) {
+            total /= english_tests.size();
+        }
 
         english_average = total;
 
@@ -636,9 +640,20 @@ public class StudyController implements Initializable {
             total += historyTest.getScore();
         }
 
-        total /= history_tests.size();
+        if (!history_tests.isEmpty()) {
+            total /= history_tests.size();
+        }
 
         history_average = total;
 
+        for (Test scienceTest : science_tests) {
+            total += scienceTest.getScore();
+        }
+
+        if (!science_tests.isEmpty()) {
+            total /= science_tests.size();
+        }
+
+        science_average = total;
     }
 }
