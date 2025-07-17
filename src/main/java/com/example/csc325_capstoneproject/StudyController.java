@@ -291,7 +291,7 @@ public class StudyController implements Initializable {
         }
 
         averageUpdated();
-        testButton.setDisable(true);
+        testButton.setDisable(false);
 
     }
 
