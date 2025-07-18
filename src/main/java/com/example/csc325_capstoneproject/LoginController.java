@@ -98,8 +98,8 @@ public class LoginController implements Initializable {
         } else {
             System.out.println("❌ Login failed. Incorrect email or password.");
         }
-    }
-*/
+        }
+        */
         if (success) {
             loginMessageLabel.setText("✅ Login successful!");
             loginMessageLabel.setTextFill(javafx.scene.paint.Color.GREEN);
@@ -118,6 +118,7 @@ public class LoginController implements Initializable {
             loginMessageLabel.setTextFill(javafx.scene.paint.Color.RED);
         }
     }
+
         /** REST call to Firebase Auth **/
     private boolean firebaseLogin(String email, String password) {
         try {
