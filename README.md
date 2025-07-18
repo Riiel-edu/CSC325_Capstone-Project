@@ -41,6 +41,21 @@ The Login Screen of the LearningTrack application is a standard login interface.
 
 (Verify information) The Register Screen of the LearningTrack application is a standard registration interface. It contains five required text fields for the user to enter: username, email, password, first name, and last name. The username must meet specific requirements. It must be between 2 and 25 characters in length, contain only word characters and the "-" character, and be unique so that no two users can have the same username. The email must also meet certain conditions. It must be a valid format containing an "@" symbol and a domain (e.g., .com), and it must be unique to ensure that no duplicate accounts exist. The password must be between 2 and 25 characters and use only word characters. Both the first name and last name must also be between 2 and 25 characters, and they may only include letters and apostrophes.
 
+# Subject Select Screen 
+
+(Insert Subject Select Screen here)
+
+(Verify Information) The Subject Select Screen is focused on four key attributes of the user.  First in the top left corner a user can choose one of the optional profile pictures for their account; Furthermore,
+to the right of the profile picture is a drop down tab which allows you to select grade leves 1 through 5. In the bottom middle of the screen you will see another drop down tab allowing the user to select between 
+10, 15, or 20 questions. On the left side of the screen are four buttons each pertaining to a different subject.  These subjects are either Math, Science, English, or History.  Once a subject is selected, displayed on the right will be a variety of information about your last 10 tests in that subject.  Some examples of the information displayed is your average, scores, and question count.  Lastly when you are ready to take an exam, make sure the subject you want is selected along with your grade level and question count. Finally, click the test button to begin. 
+
+# Test Screen 
+
+(Insert Test Screen here)
+
+(Verify Information) The test screen is focused on one thing and that is testing the user.  Here Google's Gemini AI will generate questions at the proper grade level selected.  In the middle of the screen you can see the question along with 4 multiple choice answers the user must selcet one and then hit next.  Towards the bottom of the screen you will see three buttons previous, next, and submit. The Previous button will bring you back to a prior question.  The Next button will bring you to the next question.  Lastly submit will finalize the exam and show you your test results for that instance.
+
+
 ## Links
 
 [Figma](https://www.figma.com/design/K26YwJ6Rz7k4myM8I8oPzN/Capstone-First-Draft?m=auto&t=Rktjt53h2EZ3IDaQ-1)
