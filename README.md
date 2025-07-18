@@ -28,6 +28,7 @@ LearningTrack allows students in grade levels 1 through 5 to practice and test t
 <img width="1496" height="877" alt="image" src="https://github.com/user-attachments/assets/b036e380-8259-4490-9c92-64e3b19b855e" />
 
 
+
 The Splash Screen of the LearningTrack application serves as the main hub for access into the platform. Designed with a calming color and child-friendly interface, it features a simple and inviting layout that appeals to young students while maintaining a clean, organized structure. At the top of the screen is a custom taskbar, which includes three main controls: a Close button to safely exit the app, a Minimize button for keeping the app running in the background, and a Login button that directs users to the login page. This login step ensures that students can save their progress and view personalized recommendations. Most importantly, the Start button launches the main application, taking the user into their tailored learning environment based on the selected account.
 
 # Login Screen
@@ -35,11 +36,13 @@ The Splash Screen of the LearningTrack application serves as the main hub for ac
 <img width="811" height="476" alt="image" src="https://github.com/user-attachments/assets/aee1cec3-08e7-4977-8358-af3607221dd9" />
 
 
+
 The Login Screen of the LearningTrack application is a standard login interface. It features a clean design along with a custom taskbar. The taskbar includes only a close button, with similar design to the splash screen buttons. The screen contains three input fields: one each for the user's username, email, and password. Beneath the input fields are two buttons: the Login button and a Register link. The Login button functions by checking the entered username, email, and password against the application's user database. If the credentials do not match an existing account, an error message will be displayed and the user will remain on the login screen. If the credentials are correct, the user will be logged in and redirected to the Landing Screen.
 
 # Register Screen
 
 <img width="810" height="474" alt="image" src="https://github.com/user-attachments/assets/dd95a54a-504e-4713-8705-ad08954e8ff8" />
+
 
 
 The Register Screen of the LearningTrack application is a standard registration interface. It contains five required text fields for the user to enter: username, email, password, first name, and last name. The username must meet specific requirements. It must be between 2 and 25 characters in length, contain only word characters and the "-" character, and be unique so that no two users can have the same username. The email must also meet certain conditions. It must be a valid format containing an "@" symbol and a domain (e.g., .com), and it must be unique to ensure that no duplicate accounts exist. The password must be between 2 and 25 characters and use only word characters. Both the first name and last name must also be between 2 and 25 characters, and they may only include letters and apostrophes.
@@ -66,7 +69,7 @@ to the right of the profile picture is a drop down tab which allows you to selec
 
 
 
-(Verify Information) The test screen is focused on one thing and that is testing the user.  Here Google's Gemini AI will generate questions at the proper grade level selected.  In the middle of the screen you can see the question along with 4 multiple choice answers the user must selcet one and then hit next.  Towards the bottom of the screen you will see three buttons previous, next, and submit. The Previous button will bring you back to a prior question.  The Next button will bring you to the next question.  Lastly submit will finalize the exam and show you your test results for that instance.
+The test screen is focused on one thing and that is testing the user.  Here Google's Gemini AI will generate questions at the proper grade level selected.  In the middle of the screen you can see the question along with 4 multiple choice answers the user must selcet one and then hit next.  Towards the bottom of the screen you will see three buttons previous, next, and submit. The Previous button will bring you back to a prior question.  The Next button will bring you to the next question.  Lastly submit will finalize the exam and show you your test results for that instance.
 
 
 ## Links
