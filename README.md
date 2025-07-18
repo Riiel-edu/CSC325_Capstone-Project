@@ -80,6 +80,8 @@ to the right of the profile picture is a drop down tab which allows you to selec
 
 6. Google Firebase
 
+7. Google Gemini
+
 ## Presentation
 
 (Presentation)
