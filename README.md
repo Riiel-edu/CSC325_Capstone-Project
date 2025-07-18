@@ -42,7 +42,7 @@ The Login Screen of the LearningTrack application is a standard login interface.
 <img width="810" height="474" alt="image" src="https://github.com/user-attachments/assets/dd95a54a-504e-4713-8705-ad08954e8ff8" />
 
 
-(Verify information) The Register Screen of the LearningTrack application is a standard registration interface. It contains five required text fields for the user to enter: username, email, password, first name, and last name. The username must meet specific requirements. It must be between 2 and 25 characters in length, contain only word characters and the "-" character, and be unique so that no two users can have the same username. The email must also meet certain conditions. It must be a valid format containing an "@" symbol and a domain (e.g., .com), and it must be unique to ensure that no duplicate accounts exist. The password must be between 2 and 25 characters and use only word characters. Both the first name and last name must also be between 2 and 25 characters, and they may only include letters and apostrophes.
+The Register Screen of the LearningTrack application is a standard registration interface. It contains five required text fields for the user to enter: username, email, password, first name, and last name. The username must meet specific requirements. It must be between 2 and 25 characters in length, contain only word characters and the "-" character, and be unique so that no two users can have the same username. The email must also meet certain conditions. It must be a valid format containing an "@" symbol and a domain (e.g., .com), and it must be unique to ensure that no duplicate accounts exist. The password must be between 2 and 25 characters and use only word characters. Both the first name and last name must also be between 2 and 25 characters, and they may only include letters and apostrophes.
 
 # Subject Select Screen 
 
@@ -53,7 +53,7 @@ The Login Screen of the LearningTrack application is a standard login interface.
 
 
 
-(Verify Information) The Subject Select Screen is focused on four key attributes of the user.  First in the top left corner a user can choose one of the optional profile pictures for their account; Furthermore,
+The Subject Select Screen is focused on four key attributes of the user.  First in the top left corner a user can choose one of the optional profile pictures for their account; Furthermore,
 to the right of the profile picture is a drop down tab which allows you to select grade leves 1 through 5. In the bottom middle of the screen you will see another drop down tab allowing the user to select between 
 10, 15, or 20 questions. On the left side of the screen are four buttons each pertaining to a different subject.  These subjects are either Math, Science, English, or History.  Once a subject is selected, displayed on the right will be a variety of information about your last 10 tests in that subject.  Some examples of the information displayed is your average, scores, and question count.  Lastly when you are ready to take an exam, make sure the subject you want is selected along with your grade level and question count. Finally, click the test button to begin. 
 
