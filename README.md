@@ -59,7 +59,12 @@ to the right of the profile picture is a drop down tab which allows you to selec
 
 # Test Screen 
 
-(Insert Test Screen here)
+<img width="1496" height="906" alt="image" src="https://github.com/user-attachments/assets/00936dec-e9f3-48df-ad47-b84e9327e398" />
+<img width="1501" height="916" alt="image" src="https://github.com/user-attachments/assets/199f77ae-18ca-486e-bd7c-9912e2fa7c72" />
+<img width="1500" height="912" alt="image" src="https://github.com/user-attachments/assets/6952ce8b-5930-4647-babe-09c62d33acc2" />
+<img width="1496" height="906" alt="image" src="https://github.com/user-attachments/assets/52b78fa7-9e1c-4a24-a060-10f4f3ed9ac3" />
+
+
 
 (Verify Information) The test screen is focused on one thing and that is testing the user.  Here Google's Gemini AI will generate questions at the proper grade level selected.  In the middle of the screen you can see the question along with 4 multiple choice answers the user must selcet one and then hit next.  Towards the bottom of the screen you will see three buttons previous, next, and submit. The Previous button will bring you back to a prior question.  The Next button will bring you to the next question.  Lastly submit will finalize the exam and show you your test results for that instance.
 
