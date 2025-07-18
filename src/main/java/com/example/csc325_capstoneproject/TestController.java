@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -37,6 +38,18 @@ import java.util.concurrent.ExecutionException;
  * @author Nathaniel Rivera
  */
 public class TestController implements Initializable {
+
+    @FXML
+    private ImageView image_TL;
+
+    @FXML
+    private ImageView image_BL;
+
+    @FXML
+    private ImageView image_TR;
+
+    @FXML
+    private ImageView image_BR;
 
     @FXML
     public AnchorPane root;
@@ -105,12 +118,13 @@ public class TestController implements Initializable {
      * @param url URL
      * @param resourceBundle ResourceBundle
      * @since 7/2/2025
-     * @author Nathaniel Rivera
+     * @author Nathaniel Rivera, Carlos Berio
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        QuizDataService quizGen = new QuizDataService();
+      QuizDataService quizGen = new QuizDataService();
+
 
         subject = StudyController.getCurrentSubject();
         gradeLevel = StudyController.getCurrentGradeLevel();
@@ -122,11 +136,34 @@ public class TestController implements Initializable {
         numQuestionsLabel.setText("Question " + currentQuestion + " of " + totalQuestions);
         previousButton.setDisable(true);
 
-        switch(subject) {
-            case MATH -> questions = quizGen.generateAITest("Math", gradeLevel, totalQuestions);
-            case ENGLISH -> questions = quizGen.generateAITest("English", gradeLevel, totalQuestions);
-            case HISTORY -> questions = quizGen.generateAITest("History", gradeLevel, totalQuestions);
-            case SCIENCE -> questions = quizGen.generateAITest("Science", gradeLevel, totalQuestions);
+        image_BL.setImage(new Image(Objects.requireNonNull(getClass().getResource("/com/example/csc325_capstoneproject/images/testImages/questionMark.png")).toExternalForm()));
+
+        switch (subject) {
+            case MATH -> {
+                questions = quizGen.generateAITest("Math", gradeLevel, totalQuestions);
+                image_TL.setImage(new Image(Objects.requireNonNull(getClass().getResource("/com/example/csc325_capstoneproject/images/testImages/cross.png")).toExternalForm()));
+                image_BR.setImage(new Image(Objects.requireNonNull(getClass().getResource("/com/example/csc325_capstoneproject/images/testImages/divide.png")).toExternalForm()));
+                image_TR.setImage(new Image(Objects.requireNonNull(getClass().getResource("/com/example/csc325_capstoneproject/images/testImages/plus.png")).toExternalForm()));
+            }
+            case ENGLISH -> {
+                questions = quizGen.generateAITest("English", gradeLevel, totalQuestions);
+                image_TL.setImage(new Image(Objects.requireNonNull(getClass().getResource("/com/example/csc325_capstoneproject/images/testImages/book.png")).toExternalForm()));
+                image_BR.setImage(new Image(Objects.requireNonNull(getClass().getResource("/com/example/csc325_capstoneproject/images/testImages/book2.png")).toExternalForm()));
+                image_TR.setImage(new Image(Objects.requireNonNull(getClass().getResource("/com/example/csc325_capstoneproject/images/testImages/brain.png")).toExternalForm()));
+            }
+            case HISTORY -> {
+                questions = quizGen.generateAITest("History", gradeLevel, totalQuestions);
+                image_TL.setImage(new Image(Objects.requireNonNull(getClass().getResource("/com/example/csc325_capstoneproject/images/testImages/book3.png")).toExternalForm()));
+                image_TR.setImage(new Image(Objects.requireNonNull(getClass().getResource("/com/example/csc325_capstoneproject/images/testImages/gw.png")).toExternalForm()));
+                image_BR.setImage(new Image(Objects.requireNonNull(getClass().getResource("/com/example/csc325_capstoneproject/images/testImages/globe.png")).toExternalForm()));
+            }
+            case SCIENCE -> {
+                questions = quizGen.generateAITest("Science", gradeLevel, totalQuestions);
+                image_TL.setImage(new Image(Objects.requireNonNull(getClass().getResource("/com/example/csc325_capstoneproject/images/testImages/beaker2.png")).toExternalForm()));
+                image_TR.setImage(new Image(Objects.requireNonNull(getClass().getResource("/com/example/csc325_capstoneproject/images/testImages/chem.png")).toExternalForm()));
+                image_BR.setImage(new Image(Objects.requireNonNull(getClass().getResource("/com/example/csc325_capstoneproject/images/testImages/beaker.png")).toExternalForm()));
+            }
+
         }
 
         questionLabel.setText(questions.get(currentQuestion - 1).getQuestionText());
@@ -135,6 +172,13 @@ public class TestController implements Initializable {
         option2.setText(questions.get(currentQuestion - 1).getOptions().get(1));
         option3.setText(questions.get(currentQuestion - 1).getOptions().get(2));
         option4.setText(questions.get(currentQuestion - 1).getOptions().get(3));
+
+//        questionLabel.setText("temp Question");
+//
+//        option1.setText("Option 1");
+//        option2.setText("Option 2");
+//        option3.setText("Option 3");
+//        option4.setText("Option 4");
 
         answers = new ArrayList<>();
         for(int i = 0; i < totalQuestions; i++) {
@@ -147,6 +191,7 @@ public class TestController implements Initializable {
             case HISTORY -> retrieveHistoryTests();
             case SCIENCE -> retrieveScienceTests();
         }
+
 
         //if(isTimed) {
         //   Timer timer = new Timer();
