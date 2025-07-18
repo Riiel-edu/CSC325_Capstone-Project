@@ -25,7 +25,8 @@ LearningTrack allows students in grade levels 1 through 5 to practice and test t
 
 # Splash Screen
 
-(Insert Splash Screen image later)
+<img width="1496" height="877" alt="image" src="https://github.com/user-attachments/assets/b036e380-8259-4490-9c92-64e3b19b855e" />
+
 
 The Splash Screen of the LearningTrack application serves as the main hub for access into the platform. Designed with a calming color and child-friendly interface, it features a simple and inviting layout that appeals to young students while maintaining a clean, organized structure. At the top of the screen is a custom taskbar, which includes three main controls: a Close button to safely exit the app, a Minimize button for keeping the app running in the background, and a Login button that directs users to the login page. This login step ensures that students can save their progress and view personalized recommendations. Most importantly, the Start button launches the main application, taking the user into their tailored learning environment based on the selected account.
 
