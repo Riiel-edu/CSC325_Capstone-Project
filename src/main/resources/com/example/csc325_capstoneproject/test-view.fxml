@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
@@ -11,11 +13,11 @@
 
 <AnchorPane fx:id="root" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325_capstoneproject.TestController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="106.0" stroke="BLACK" strokeType="INSIDE" width="1200.0" />
+      <Rectangle fx:id="top_Box" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="106.0" stroke="BLACK" strokeType="INSIDE" width="1200.0" />
       <Label fx:id="subjectLabel" layoutX="28.0" layoutY="22.0" text="Subject: Math" />
       <Label fx:id="gradeLabel" layoutX="28.0" layoutY="44.0" text="Grade: 1" />
-      <Label fx:id="numQuestionsLabel" layoutX="544.0" layoutY="179.0" text="Question ? of ?" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="400.0" layoutX="209.0" layoutY="206.0" stroke="BLACK" strokeType="INSIDE" width="750.0" />
+      <Label fx:id="numQuestionsLabel" layoutX="233.0" layoutY="185.0" text="Question ? of ?" />
+      <Rectangle fx:id="mid_Box" arcHeight="50.0" arcWidth="50.0" fill="DODGERBLUE" height="400.0" layoutX="209.0" layoutY="206.0" stroke="BLACK" strokeType="INSIDE" width="750.0" />
       <Label fx:id="questionLabel" layoutX="225.0" layoutY="230.0" text="Question Area" />
       <Button fx:id="previousButton" layoutX="50.0" layoutY="620.0" mnemonicParsing="false" onAction="#previous" prefHeight="55.0" prefWidth="155.0" text="Previous" />
       <Button fx:id="nextButton" layoutX="522.0" layoutY="620.0" mnemonicParsing="false" onAction="#next" prefHeight="55.0" prefWidth="155.0" text="Next" />
@@ -48,5 +50,18 @@
             </RadioButton>
          </children>
       </VBox>
+      <ImageView fx:id="image_BL" fitHeight="150.0" fitWidth="167.0" layoutX="20.0" layoutY="405.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/testImages/questionMark.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="image_TR" fitHeight="150.0" fitWidth="167.0" layoutX="1000.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="image_BR" fitHeight="150.0" fitWidth="167.0" layoutX="1000.0" layoutY="405.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="image_TL" fitHeight="150.0" fitWidth="167.0" layoutX="20.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="topText" layoutX="505.0" layoutY="31.0" text="Good Luck !">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
