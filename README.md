@@ -32,19 +32,26 @@ The Splash Screen of the LearningTrack application serves as the main hub for ac
 
 # Login Screen
 
-(Insert Login Screen image later)
+<img width="811" height="476" alt="image" src="https://github.com/user-attachments/assets/aee1cec3-08e7-4977-8358-af3607221dd9" />
+
 
 The Login Screen of the LearningTrack application is a standard login interface. It features a clean design along with a custom taskbar. The taskbar includes only a close button, with similar design to the splash screen buttons. The screen contains three input fields: one each for the user's username, email, and password. Beneath the input fields are two buttons: the Login button and a Register link. The Login button functions by checking the entered username, email, and password against the application's user database. If the credentials do not match an existing account, an error message will be displayed and the user will remain on the login screen. If the credentials are correct, the user will be logged in and redirected to the Landing Screen.
 
 # Register Screen
 
-(Insert Register Screen image later)
+<img width="810" height="474" alt="image" src="https://github.com/user-attachments/assets/dd95a54a-504e-4713-8705-ad08954e8ff8" />
+
 
 (Verify information) The Register Screen of the LearningTrack application is a standard registration interface. It contains five required text fields for the user to enter: username, email, password, first name, and last name. The username must meet specific requirements. It must be between 2 and 25 characters in length, contain only word characters and the "-" character, and be unique so that no two users can have the same username. The email must also meet certain conditions. It must be a valid format containing an "@" symbol and a domain (e.g., .com), and it must be unique to ensure that no duplicate accounts exist. The password must be between 2 and 25 characters and use only word characters. Both the first name and last name must also be between 2 and 25 characters, and they may only include letters and apostrophes.
 
 # Subject Select Screen 
 
-(Insert Subject Select Screen here)
+<img width="1497" height="1031" alt="image" src="https://github.com/user-attachments/assets/2a53b997-76c1-43a5-8223-a1246968c322" />
+<img width="1497" height="1036" alt="image" src="https://github.com/user-attachments/assets/a6164db1-fb9d-4797-bf81-0c17e7457636" />
+<img width="1500" height="1037" alt="image" src="https://github.com/user-attachments/assets/d693d8da-6a5f-479e-bd4f-b54a5fc68797" />
+<img width="1497" height="1032" alt="image" src="https://github.com/user-attachments/assets/24763987-8e58-466f-ab8b-fa86c8363cf0" />
+
+
 
 (Verify Information) The Subject Select Screen is focused on four key attributes of the user.  First in the top left corner a user can choose one of the optional profile pictures for their account; Furthermore,
 to the right of the profile picture is a drop down tab which allows you to select grade leves 1 through 5. In the bottom middle of the screen you will see another drop down tab allowing the user to select between 
